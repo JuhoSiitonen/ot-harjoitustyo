@@ -1,0 +1,105 @@
+commit 44a0656454c5086002b62dde5a0afc9328880d5b 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:52:28 2023 +0200 
+
+   file1 poistettu ja file2 uudelleennimetty 
+
+tiedostoja/file2             | 0 
+tiedostoja/{file1 => file22} | 0 
+2 files changed, 0 insertions(+), 0 deletions(-) 
+
+commit ebf20c4cdddec2a023e58c360b6521ff21d87e95 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:49:31 2023 +0200 
+
+   lisätty file1 file2 ja file3 
+
+tiedostoja/file1 | 0 
+tiedostoja/file2 | 0 
+tiedostoja/file3 | 0 
+3 files changed, 0 insertions(+), 0 deletions(-) 
+
+commit 8791ee5f44289e47d0012e501ff3c7ff1f900a8b 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:44:43 2023 +0200 
+
+   muutoksia eka ja kolmas 
+
+eka.txt    | 3 ++- 
+kolmas.txt | 2 +- 
+2 files changed, 3 insertions(+), 2 deletions(-) 
+
+commit c54aadc35662e1f362436d9a760b30a20f7041eb 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:42:54 2023 +0200 
+
+   toinen poistettu ja eka lisätty 
+
+tiedosto.txt => eka.txt | 0 
+toinen.txt              | 1 - 
+2 files changed, 1 deletion(-) 
+
+commit ed02cbaa93bdfcec2da536e3a45427bcf0c0f9aa 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:40:04 2023 +0200 
+
+   poistettu ja lisätty tekstiä 
+
+tiedosto.txt | 10 +++++++++- 
+1 file changed, 9 insertions(+), 1 deletion(-) 
+
+commit 70e3e91388fd21bc6ab9260a987eb512e9a13505 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:39:01 2023 +0200 
+
+   lisätty paljon tekstiä 
+
+tiedosto.txt | 13 +++++++++++++ 
+1 file changed, 13 insertions(+) 
+
+commit 20163b94b54311aab7fb427aa2c65e6bd3a33478 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:35:20 2023 +0200 
+
+   lisätty stuff ja jokin 
+
+stuff/jokin.txt | 0 
+1 file changed, 0 insertions(+), 0 deletions(-) 
+
+commit 8727b5beac67da7b360af35e59cc3dd77d79f10e 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:34:02 2023 +0200 
+
+   muutettu toinen ja kolmas 
+
+kolmas.txt | 1 + 
+toinen.txt | 1 + 
+2 files changed, 2 insertions(+) 
+
+commit 846b871d4c4f03df99d8c4b1870acd717267084e 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:33:03 2023 +0200 
+
+   kolmas lisätty 
+
+kolmas.txt | 0 
+1 file changed, 0 insertions(+), 0 deletions(-) 
+
+commit 32aa56fa6a996434164d0318105ca5fd11dfe8bd 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:31:05 2023 +0200 
+
+   muutos ja lisäys 
+
+tiedosto.txt | 1 + 
+toinen.txt   | 0 
+2 files changed, 1 insertion(+) 
+
+commit dc9604db2541163bfa1773d72c2213acca4ad89e 
+Author: Juho Siitonen <juho_tuomas@msn.com> 
+Date:   Mon Mar 13 14:28:23 2023 +0200 
+
+   tiedosto.txt on luotu 
+
+tiedosto.txt | 0 
+1 file changed, 0 insertions(+), 0 deletions(-)
