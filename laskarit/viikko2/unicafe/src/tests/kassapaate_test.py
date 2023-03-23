@@ -44,7 +44,7 @@ class TestKassapaate(unittest.TestCase):
 
     def test_syo_edullisesti_kateisella_riittava_maksu_lounas_maara(self):
         self.kassapaate.syo_edullisesti_kateisella(500)
-        self.assertEqual(self.kassapaate.maukkaat, 1)
+        self.assertEqual(self.kassapaate.edulliset, 1)
 
     def test_syo_edullisesti_kateisella_riittamaton_maksu_vaihtoraha(self):
         self.assertEqual(self.kassapaate.syo_edullisesti_kateisella(100), 100)
