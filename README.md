@@ -10,3 +10,7 @@ Repository for course **Ohjelmistotekniikka** weekly coding excercises and a **d
 [gitlog.txt](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
 [komentorivi.txt](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+## Harjoitustyö
+
+[Vaatimusmäärittely](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/vaatimusmaarittely.md)
