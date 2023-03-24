@@ -14,3 +14,5 @@ Repository for course **Ohjelmistotekniikka** weekly coding excercises and a **d
 ## Harjoitustyö
 
 [Vaatimusmäärittely](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/vaatimusmaarittely.md)
+
+[Työaikakirjanpito](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/tyoaikakirjanpito.md)
