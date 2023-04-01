@@ -13,3 +13,17 @@ Jumpman on tasohyppely peli joka on sivulle rullaavalla ruudulla toteutettu Pyth
 - [Työaikakirjanpito](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/tyoaikakirjanpito.md)
 
 - [Changelog](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/changelog.md)
+
+## Käyttöohjeet
+
+Sovelluksen vaatimat kirjastot voi asentaa komennolla:
+
+**poetry install** 
+
+Sovelluksen voi sen jälkeen käynnistää komennolla:
+
+**poetry run invoke start**
+
+
+
+
