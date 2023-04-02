@@ -1,5 +1,8 @@
 import pygame, sys
 from level import Level
+from clock import Clock
+from game import Game
+from event_handling import Event_handling
 
 level_map = ['00000000000000000000',
              '00000000000000000000',
@@ -31,8 +34,6 @@ def main():
         level.run()
         pygame.display.update()
         clock.tick(60)
-    
-
 
 if __name__ == "__main__":
     main()
