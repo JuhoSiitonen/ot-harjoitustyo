@@ -6,3 +6,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((32, 64))
         self.image.fill("green")
         self.rect = self.image.get_rect(topleft = pos)
+
+    def movement(self, dx=0, dy=0):
+        self.rect.move_ip(dx, dy)
+
