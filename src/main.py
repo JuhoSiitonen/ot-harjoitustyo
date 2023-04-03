@@ -1,8 +1,5 @@
 import pygame, sys
 from level import Level
-from clock import Clock
-from game import Game
-from event_handling import Event_handling
 
 level_map = ['00000000000000000000',
              '00000000000000000000',
@@ -23,7 +20,7 @@ def main():
     pygame.display.set_caption("Jumpman")
     pygame.init()
     clock = pygame.time.Clock()
-    level = Level(level_map, display)
+    level = Level(level_map)
 
     while True:
         for event in pygame.event.get():
@@ -31,7 +28,7 @@ def main():
                 pygame.quit()
                 sys.exit()
         display.fill("black")
-        level.run()
+        level.all_sprites.draw(display)
         pygame.display.update()
         clock.tick(60)
 
