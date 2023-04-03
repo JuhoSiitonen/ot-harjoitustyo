@@ -1,8 +1,8 @@
 import unittest
 import pygame
-import level from Level
+from level import Level
 
 
 class TestLevel(unittest.TestCase):
     def setup(self):
-        
+        pass

@@ -1,10 +1,10 @@
 import unittest
 import pygame
-import player import Player
+from player import Player
 
 
 class TestPlayer(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         self.player = Player((50,50))
 
     def check_sprite_coordinates_equal(self, sprite, x, y):
