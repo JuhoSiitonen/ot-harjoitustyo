@@ -3,15 +3,15 @@ from cells import Cell
 from player import Player
 
 class Level:
-    def __init__(self, level_map, surface):
-        self.display_surface = surface
+    def __init__(self, level_map):
         self.setup(level_map)
         self.camera_shift = 0
 
-    def setup(self,layout):
+    def setup(self,level_map):
         self.cells = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
-        for row_index, row in enumerate(layout):
+        self.all_sprites = pygame.sprite.Group()
+        for row_index, row in enumerate(level_map):
             for col_index, col in enumerate(row):
                 x = col_index * 64
                 y = row_index * 64
@@ -21,8 +21,7 @@ class Level:
                 if col == "P":
                     player_cell = Player((x,y))
                     self.player.add(player_cell)
-
-    def run(self):
-        self.cells.update(self.camera_shift)
-        self.cells.draw(self.display_surface)
-        self.player.draw(self.display_surface)
+        self.all_sprites.add(
+            self.cells,
+            self.player
+        )
