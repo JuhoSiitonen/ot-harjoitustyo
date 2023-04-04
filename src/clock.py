@@ -5,4 +5,4 @@ class Clock:
         self.clock = pygame.time.Clock()
 
     def tick(self):
-        self.tick(60)
+        self.clock.tick(60)
