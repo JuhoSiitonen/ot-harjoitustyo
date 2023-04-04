@@ -16,6 +16,8 @@ Jumpman on tasohyppely peli joka on sivulle rullaavalla ruudulla toteutettu Pyth
 
 ## Käyttöohjeet
 
+### Asennus ja suoritus
+
 Sovelluksen vaatimat kirjastot voi asentaa komennolla:
 
 **poetry install** 
@@ -23,6 +25,16 @@ Sovelluksen vaatimat kirjastot voi asentaa komennolla:
 Sovelluksen voi sen jälkeen käynnistää komennolla:
 
 **poetry run invoke start**
+
+### Testaus
+
+Sovelluksen yksikkötestit voi ajaa komennolla:
+
+**poetry run invoke test**
+
+Sovelluksen testikattavuuden saa html tiedostoksi seuraavalla komennolla:
+
+**poetry run invoke coverage-report**
 
 
 
