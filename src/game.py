@@ -17,9 +17,11 @@ class Game:
         if inputs[pygame.K_RIGHT]:
             self.level.player.direction.x = 1
             self.level.player.move()
+            self.level.horizontal_collision()
         elif inputs[pygame.K_LEFT]:
             self.level.player.direction.x = -1
             self.level.player.move()
+            self.level.horizontal_collision()
         else:
             self.level.player.direction.x = 0
             self.level.player.move()

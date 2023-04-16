@@ -39,3 +39,13 @@ class Level:
         else: 
             self.camera_shift = 0
             self.player.speed = 7
+    
+    def horizontal_collision(self):
+        player = self.player_cell.sprite
+
+        for sprite in self.cells.sprites():
+            if sprite.rect.colliderect(player.rect):
+                if player.direction.x < 0:
+                    player.rect.left = sprite.rect.right
+                elif player.direction.x > 0:
+                    player.rect.right = sprite.rect.left
