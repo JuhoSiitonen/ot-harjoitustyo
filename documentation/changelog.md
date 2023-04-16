@@ -5,3 +5,13 @@
 - Luotu player luokka ja sen mukaiset muutokset main, level ja cells luokkiin jotta pelaaja hahmo piirtyy ruudulle vihreänä
 - Separation of concerns, alkuvedoksen jakoa moduuleihin jotta riippuvuudet voidaan injektoida ja level_test sekä player_test moduulien luonti
 - Kolmannen viikon lopuksi saatu valmiiksi ensimmäinen testi joka testaa player luokan movement functiota
+
+## Viikko 4
+
+- Lisätty invoke komento autopep formatoinnille.
+- Luotu moduulit: clock.py, event_handling, game.py ja renderer.py
+- Riippuvuuksien injektointi game.py moduuliin. 
+- Hahmon liike player.py moduulissa itsessään toteutettuna jotta liike on sulavaa pygame.key.get_pressed() funktion avulla. Liikkuminen oikealle ja vasemmalle sekä hyppääminen onnistuu. Myös painovoima arvo lisätty jotta hyppääminen onnistuisi. 
+- Rullaava kamera toteutettu level.py moduulissa. 
+- Inputtien tarkastus game.py moduulissa handle_inputs metodissa. 
+- Törmäyksien tarkistus level.py moduulissa, ei vielä täysin varma siitä mihin pelaaja tulisi sijottaa törmäyksen jälkeen.
