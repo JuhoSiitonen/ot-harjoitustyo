@@ -49,3 +49,15 @@ class Level:
                     player.rect.left = sprite.rect.right
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
+
+    def vertical_collision(self):
+        player = self.player_cell.sprite
+
+        for sprite in self.cells.sprites():
+            if sprite.rect.colliderect(player.rect):
+                if player.direction.y < 0:
+                    player.rect.top = sprite.rect.bottom
+                    player.direction.y = 0
+                elif player.direction.y > 0: 
+                    player.rect.bottom = sprite.rect.top
+                    player.direction.y = 0
