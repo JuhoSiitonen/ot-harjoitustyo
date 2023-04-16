@@ -24,7 +24,6 @@ class Player(pygame.sprite.Sprite):
 
     def jump(self):
         self.direction.y = self.jump_speed
-        
 
     def movement(self, dx=0, dy=0):
         self.rect.move_ip(dx, dy)
