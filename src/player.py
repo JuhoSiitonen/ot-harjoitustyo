@@ -23,3 +23,9 @@ class Player(pygame.sprite.Sprite):
 
     def movement(self, dx=0, dy=0):
         self.rect.move_ip(dx, dy)
+
+    def get_player_x(self):
+        return self.rect.x
+    
+    def get_direction(self):
+        return self.direction.x
