@@ -8,16 +8,31 @@ class Game:
         self.renderer = renderer
 
     def handle_events(self):
-        self.level.player.input()
-        self.level.player.apply_gravity()
         for event in self.event_handling.get():
             if event.type == pygame.QUIT:
                 return False
+            
+    def handle_inputs(self):
+        inputs = self.event_handling.get_pressed()
+        if inputs[pygame.K_RIGHT]:
+            self.level.player.direction.x = 1
+            self.level.player.move()
+        elif inputs[pygame.K_LEFT]:
+            self.level.player.direction.x = -1
+            self.level.player.move()
+        else:
+            self.level.player.direction.x = 0
+            self.level.player.move()
+
+        if inputs[pygame.K_SPACE]:
+            self.level.player.jump()
+        self.level.player.apply_gravity()
 
     def start(self):
         while True:
             if self.handle_events() == False:
                 break
+            self.handle_inputs()
             self.render()
             self.clock.tick()
 
