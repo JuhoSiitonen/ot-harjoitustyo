@@ -33,10 +33,9 @@ class Level:
         if x < 200 and direction < 0:
             self.camera_shift = 7
             self.player.speed = 0
-        elif x > 1000 and direction > 1:
-            self.camera_shift = 7
+        elif x > 1000 and direction > 0:
+            self.camera_shift = -7
             self.player.speed = 0
         else: 
             self.camera_shift = 0
             self.player.speed = 7
-
