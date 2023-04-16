@@ -8,16 +8,9 @@ class Game:
         self.renderer = renderer
 
     def handle_events(self):
+        self.level.player.input()
         for event in self.event_handling.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    self.level.player.movement(dx=-5)
-                if event.key == pygame.K_RIGHT:
-                    self.level.player.movement(dx=5)
-                if event.key == pygame.K_UP:
-                    self.level.player.movement(dy=-15)
-
-            elif event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:
                 return False
 
     def start(self):
