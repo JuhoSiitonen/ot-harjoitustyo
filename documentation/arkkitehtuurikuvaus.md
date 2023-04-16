@@ -41,6 +41,3 @@ classDiagram
         +start()
         +render()
     }
-
-## Sovelluslogiikka
-
