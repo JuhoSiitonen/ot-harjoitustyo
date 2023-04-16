@@ -10,7 +10,7 @@ class Level:
 
     def setup(self, level_map):
         self.cells = pygame.sprite.Group()
-        self.player = pygame.sprite.GroupSingle()
+        self.player_cell = pygame.sprite.GroupSingle()
         self.all_sprites = pygame.sprite.Group()
         for row_index, row in enumerate(level_map):
             for col_index, col in enumerate(row):
@@ -20,9 +20,9 @@ class Level:
                     cell = Cell((x, y), 64)
                     self.cells.add(cell)
                 if col == "P":
-                    player_cell = Player((x, y))
-                    self.player.add(player_cell)
+                    self.player = Player((x, y))
+                    self.player_cell.add(self.player)
         self.all_sprites.add(
             self.cells,
-            self.player
+            self.player_cell
         )
