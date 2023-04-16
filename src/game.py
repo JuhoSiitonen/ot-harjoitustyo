@@ -9,6 +9,7 @@ class Game:
 
     def handle_events(self):
         self.level.player.input()
+        self.level.player.apply_gravity()
         for event in self.event_handling.get():
             if event.type == pygame.QUIT:
                 return False
