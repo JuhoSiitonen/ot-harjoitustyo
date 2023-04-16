@@ -16,19 +16,18 @@ class Game:
         inputs = self.event_handling.get_pressed()
         if inputs[pygame.K_RIGHT]:
             self.level.player.direction.x = 1
-            self.level.player.move()
-            self.level.horizontal_collision()
         elif inputs[pygame.K_LEFT]:
             self.level.player.direction.x = -1
-            self.level.player.move()
-            self.level.horizontal_collision()
         else:
             self.level.player.direction.x = 0
-            self.level.player.move()
 
         if inputs[pygame.K_SPACE]:
             self.level.player.jump()
+        
+        self.level.player.move()
         self.level.player.apply_gravity()
+        self.level.vertical_collision()
+        self.level.horizontal_collision()
 
     def start(self):
         while True:
