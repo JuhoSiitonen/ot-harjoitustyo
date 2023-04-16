@@ -17,8 +17,8 @@ class Level:
                 x = col_index * 64
                 y = row_index * 64
                 if col == "x":
-                    cell = Cell((x, y), 64)
-                    self.cells.add(cell)
+                    self.cell = Cell((x, y), 64)
+                    self.cells.add(self.cell)
                 if col == "P":
                     self.player = Player((x, y))
                     self.player_cell.add(self.player)
@@ -26,3 +26,17 @@ class Level:
             self.cells,
             self.player_cell
         )
+
+    def camera(self):
+        x = self.player.get_player_x()
+        direction = self.player.get_direction()
+        if x < 200 and direction < 0:
+            self.camera_shift = 7
+            self.player.speed = 0
+        elif x > 1000 and direction > 1:
+            self.camera_shift = 7
+            self.player.speed = 0
+        else: 
+            self.camera_shift = 0
+            self.player.speed = 7
+

@@ -8,5 +8,5 @@ class Cell(pygame.sprite.Sprite):
         self.image.fill("white")
         self.rect = self.image.get_rect(topleft=pos)
 
-    def camera(self, x_dx):
+    def update(self, x_dx):
         self.rect.x += x_dx
