@@ -15,3 +15,6 @@
 - Rullaava kamera toteutettu level.py moduulissa. 
 - Inputtien tarkastus game.py moduulissa handle_inputs metodissa. 
 - Törmäyksien tarkistus level.py moduulissa, ei vielä täysin varma siitä mihin pelaaja tulisi sijottaa törmäyksen jälkeen.
+- Hahmon liikkeen törmäyksien tarkistuksen järjestys muutettu, ensin vertikaali liikkeen tarkistus ja sitten horisontaali liikkeen tarkistus törmäyksien varalta ja sen mukainen hahmon siirtäminen törmättävän spriten asianmukaiselle puolelle. 
+- Kentän maalin lisäys moduulin level koodiin ja moduulin cell muokkaus jotta luokka ottaa parametrina vastaan spriten värin
+

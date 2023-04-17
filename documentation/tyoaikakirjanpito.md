@@ -15,3 +15,15 @@
 - Lauantai 1.4 1h 30min (Pygame toiminta ja testien miettiminen)
 - Sunnuntai 2.4 1h 30min (Pelin ensivedoksen jakaminen moduuleihin jotta riippuvuuksien injektointi ja testaaminen on mahdollista)
 - Maanantai 3.4 2h (Testin luominen player luokalle ja level luokan muokkaus jotta se vain luo sprite kokoelman)
+
+- Viikon totaali : 13h
+
+## Viikko 4
+
+- Keskiviikko 12.4 2h (Pylint, uudet invoke tehtävät)
+- Torstai 13.4 2h (Riippuvuuksien injektointi)
+- Sunnuntai 16.4 4h (Hahmon liike pygame vektorina, kameran rullaus)
+- Maanantai 6h (Törmäyksien tarkastus ja "painovoima", testikattavuuden lisääminen, pylint virheiden korjaus)
+
+- Viikon totaali : 14h 
+
