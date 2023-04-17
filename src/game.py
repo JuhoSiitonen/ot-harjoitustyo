@@ -11,7 +11,8 @@ class Game:
         for event in self.event_handling.get():
             if event.type == pygame.QUIT:
                 return False
-            
+        return True
+
     def handle_inputs(self):
         inputs = self.event_handling.get_pressed()
         if inputs[pygame.K_RIGHT]:
@@ -23,7 +24,7 @@ class Game:
 
         if inputs[pygame.K_SPACE]:
             self.level.player.jump()
-        
+
         self.level.player.apply_gravity()
         self.level.vertical_collision()
         self.level.player.move()
@@ -31,7 +32,7 @@ class Game:
 
     def start(self):
         while True:
-            if self.handle_events() == False:
+            if self.handle_events() is False:
                 break
             self.handle_inputs()
             self.render()

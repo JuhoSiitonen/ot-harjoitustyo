@@ -1,9 +1,8 @@
 import pygame
-import sys
 from level import Level
 from game import Game
 from renderer import Renderer
-from event_handling import Event_handling
+from event_handling import EventHandling
 from clock import Clock
 
 
@@ -24,11 +23,11 @@ def main():
     display_height = CELL_SIZE * len(level_map)
     display_width = 1200
     display = pygame.display.set_mode((display_width, display_height))
-    
+
     clock = Clock()
     level = Level(level_map)
     renderer = Renderer(display, level)
-    event_handling = Event_handling()
+    event_handling = EventHandling()
     game = Game(level, clock, event_handling, renderer)
 
     pygame.display.set_caption("Jumpman")

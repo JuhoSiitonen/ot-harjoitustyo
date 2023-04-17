@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((32, 64))
         self.image.fill("green")
         self.rect = self.image.get_rect(topleft=pos)
-        
+
         # Player movement
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 7
@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
     def move(self):
         change = self.direction.x * self.speed
         self.movement(dx=change)
-    
+
     def apply_gravity(self):
         self.direction.y += self.gravity
         self.movement(dy=self.direction.y)
@@ -25,11 +25,11 @@ class Player(pygame.sprite.Sprite):
     def jump(self):
         self.direction.y = self.jump_speed
 
-    def movement(self, dx=0, dy=0):
+    def movement(self, dx=0, dy=0): # pylint: disable=invalid-name
         self.rect.move_ip(dx, dy)
 
     def get_player_x(self):
         return self.rect.x
-    
+
     def get_direction(self):
         return self.direction.x
