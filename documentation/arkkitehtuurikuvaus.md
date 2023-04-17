@@ -16,6 +16,9 @@ classDiagram
 
     class Player{
         +input()
+        +apply_gravity()
+        +move()
+        +jump()
         +movement()
         +get_player_x()
         +get_direction()
@@ -23,12 +26,15 @@ classDiagram
     class Level{
         +setup()
         +camera()
+        +horizontal_collision()
+        +vertical_collision()
     }
     class Renderer{
         +render()
     }
     class Event_handling{
         +get()
+        +get_pressed()
     }
     class Clock{
         +tick()
@@ -38,6 +44,7 @@ classDiagram
     }
     class Game{
         +handle_events()
+        +handle_inputs()
         +start()
         +render()
     }
