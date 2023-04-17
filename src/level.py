@@ -11,20 +11,25 @@ class Level:
     def setup(self, level_map):
         self.cells = pygame.sprite.Group()
         self.player_cell = pygame.sprite.GroupSingle()
+        self.goal = pygame.sprite.GroupSingle()
         self.all_sprites = pygame.sprite.Group()
         for row_index, row in enumerate(level_map):
             for col_index, col in enumerate(row):
                 x = col_index * 64
                 y = row_index * 64
                 if col == "x":
-                    self.cell = Cell((x, y), 64)
+                    self.cell = Cell((x, y), 64, "white")
                     self.cells.add(self.cell)
                 if col == "P":
                     self.player = Player((x, y))
                     self.player_cell.add(self.player)
+                if col == "G":
+                    self.goal_cell = Cell((x,y), 64, "blue")
+                    self.goal.add(self.goal_cell)
         self.all_sprites.add(
             self.cells,
-            self.player_cell
+            self.player_cell,
+            self.goal
         )
 
     def camera(self):
