@@ -24,9 +24,9 @@ class Game:
         if inputs[pygame.K_SPACE]:
             self.level.player.jump()
         
-        self.level.player.move()
         self.level.player.apply_gravity()
         self.level.vertical_collision()
+        self.level.player.move()
         self.level.horizontal_collision()
 
     def start(self):
