@@ -9,7 +9,7 @@ level_map = ['00000000000000000000',
              'xxx000000P0G00000xxx',
              '0000000xxxxx00000xxx',
              '0000000xxxxx00000xxx',
-             'xxxxx000000000000000',
+             'xxxxx00000000B00E00B',
              'xxxxxxxx000000xxxxxx']
 
 CELL_SIZE = 64
@@ -75,4 +75,11 @@ class TestLevel(unittest.TestCase):
         player = self.level.player_cell.sprite
         player.rect.x += 20
         self.assertEqual(self.level.level_completion(), False)
+
+    def test_enemy_movement(self):
+        for enemy in self.level.enemies:
+            start = enemy.rect.x
+        self.level.enemy_movement()
+        for enemy in self.level.enemies:
+            self.assertNotEqual(enemy.rect.x, start)
 
