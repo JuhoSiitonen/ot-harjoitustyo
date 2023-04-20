@@ -28,10 +28,8 @@ class UI:
             if event == sg.WIN_CLOSED:
                 break
             if event == "Level 1":
-                #self.run_game(level_map_1)
                 pygame_thread = threading.Thread(target=self.run_game(level_map_1))
                 pygame_thread.start()
-                # Wait for the Pygame thread to finish before opening another window
         pygame_thread.join()
 
     def run_game(self, level_map):
