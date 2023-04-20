@@ -25,18 +25,19 @@ class Game:
         if inputs[pygame.K_SPACE]:
             self.level.player.jump()
 
-        self.level.player.apply_gravity()
-        self.level.vertical_collision()
-        self.level.player.move()
-        self.level.horizontal_collision()
+        self.level.update()
 
     def start(self):
-        while True:
+        running = True
+        while running:
             if self.handle_events() is False:
-                break
+                running = False
+            if self.level.level_completion() is True:
+                running = False
             self.handle_inputs()
             self.render()
             self.clock.tick()
+        pygame.quit()
 
     def render(self):
         self.renderer.render()
