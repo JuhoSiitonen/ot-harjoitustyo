@@ -6,7 +6,7 @@ level_map = ['00000000000000000000',
              '00000000000000000000',
              '00000000000000000000',
              'xxx000000x0000000000',
-             'xxx000000P0000000xxx',
+             'xxx000000P0G00000xxx',
              '0000000xxxxx00000xxx',
              '0000000xxxxx00000xxx',
              'xxxxx000000000000000',
@@ -65,3 +65,14 @@ class TestLevel(unittest.TestCase):
         player.direction.y = -1
         self.level.vertical_collision()
         self.assertEqual(player.rect.y, start)
+
+    def test_level_completed(self):
+        player = self.level.player_cell.sprite
+        player.rect.x += 100
+        self.assertEqual(self.level.level_completion(), True)
+
+    def test_level_not_completed(self):
+        player = self.level.player_cell.sprite
+        player.rect.x += 20
+        self.assertEqual(self.level.level_completion(), False)
+
