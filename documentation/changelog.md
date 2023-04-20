@@ -18,3 +18,12 @@
 - Hahmon liikkeen törmäyksien tarkistuksen järjestys muutettu, ensin vertikaali liikkeen tarkistus ja sitten horisontaali liikkeen tarkistus törmäyksien varalta ja sen mukainen hahmon siirtäminen törmättävän spriten asianmukaiselle puolelle. 
 - Kentän maalin lisäys moduulin level koodiin ja moduulin cell muokkaus jotta luokka ottaa parametrina vastaan spriten värin
 
+## Viikko 5
+
+- Lisätty uusi moduuli UI.py jossa on luokka UI.
+- Lisätty aloitusruutu jossa voi valita pelattavan kentän tai poistua pelistä. Tämä ruutu on toteutettu PySimpleGUI kirjastolla.
+- PySimpleGUI luo uuden säikeen pygame ikkunalle kun se käynnistetään valitsemalla pelattava kenttä
+- Kentän maalin funktionaalisuus lisätty, maaliin pääseminen sulkee pygame ikkunan ja sen säikeen.
+- Pelaajan hyppy korjattu toimimaan ainoastaan kun pelaaja koskee "maahan"
+- 
+

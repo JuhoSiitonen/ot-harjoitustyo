@@ -8,8 +8,11 @@ Jumpman on tasohyppely peli joka on sivulle rullaavalla ruudulla toteutettu Pyth
 
 Sovelluksella on kolme eri näkymää, ensimmäinen on valikko josta voidaan siirtyä eri pelimoodeihin,toinen on itse peli ja kolmas on highscore näkymä jossa on esitetty kenttien parhaat läpäisyajat.
 
+Ensimmäinen ja kolmas näkymä ovat PySimpleGUI kirjastolla toteutettuja näkymiä ja itse pelinäkymä on pygame kirjastolla toteutettu.
+
 ## Toiminnallisuudet
 
+- Käyttöliittymä joka mahdollistaa pelattavan kentän valinnan
 - Pelihahmo joka liikkuu 2D kentissä vasemmalle, oikealle ja ylös ja alas. 
 - Peli on sivusta kuvattu ja se koostuu kentistä.
 - Pelihahmo voi kerätä kolikoita ja artifakteja ja niiden määärä näkyy ruudulla.
@@ -19,7 +22,6 @@ Sovelluksella on kolme eri näkymää, ensimmäinen on valikko josta voidaan sii
 	- Normaali pelimoodi jossa aikaa ei ole rajoitettu
 	- Time attack moodi jossa kenttien läpäisyyn käytettävissä oleva aika on rajoitettu
 - Peli pitää kirjaa pelaajan parhaista läpäisyajoista tiedoston muodossa joka on tallennettu paikallisen koneen levylle.
-- Peli siirtyy kentästä toiseen suoraan pelaajan läpäistyä edellisen kentän ja kun kaikki kentät on läpäisty pelaaja näkee lopputekstiruudun.
 
 ## Jatkokehitysideat
 

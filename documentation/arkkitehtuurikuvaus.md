@@ -5,14 +5,14 @@
 ```mermaid
 
 classDiagram
-
+    UI <|-- Game
     Game <|-- Clock
     Game <|-- Event_handling
     Game <|-- Level
     Game <|-- Renderer
     Player -- Level
     Cells -- Level
-    Game -- Main
+    UI -- Main
 
     class Player{
         +input()
@@ -28,6 +28,8 @@ classDiagram
         +camera()
         +horizontal_collision()
         +vertical_collision()
+        +level_completion()
+        +update()
     }
     class Renderer{
         +render()
@@ -47,4 +49,9 @@ classDiagram
         +handle_inputs()
         +start()
         +render()
+    }
+    class UI{
+        +create_window()
+        +run()
+        +run_game()
     }

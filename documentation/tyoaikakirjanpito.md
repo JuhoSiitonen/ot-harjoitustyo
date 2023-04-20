@@ -27,3 +27,8 @@
 
 - Viikon totaali : 14h 
 
+## Viikko 5
+
+- Keskiviikko 19.4 3h (PySimpleGUI kirjaston implementointi)
+- Torstai 20.4 4h (Säikeiden käyttö pygame kanssa ja uuden UI luokan vaatimat muiden luokkien muutokset)
+
