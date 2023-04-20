@@ -5,7 +5,7 @@ level_map_1 = ['00000000000000000000',
              'xxx000000P0G00000xxx',
              '0000000xxxxx00000xxx',
              '0000000xxxxx00000xxx',
-             'xxxxx000000000000000',
+             'xxxxx00000000B00E00B',
              'xxxxxxxx000000xxxxxx']
 
 CELL_SIZE = 64
