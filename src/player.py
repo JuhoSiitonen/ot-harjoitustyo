@@ -23,7 +23,8 @@ class Player(pygame.sprite.Sprite):
         self.movement(dy=self.direction.y)
 
     def jump(self):
-        self.direction.y = self.jump_speed
+        if self.direction.y == 0:
+            self.direction.y = self.jump_speed
 
     def movement(self, dx=0, dy=0): # pylint: disable=invalid-name
         self.rect.move_ip(dx, dy)
