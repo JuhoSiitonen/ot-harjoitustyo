@@ -4,14 +4,14 @@ from player import Player
 
 class Level:
     def __init__(self, level_map):
-        self.setup(level_map)
-        self.camera_shift = 0
-
-    def setup(self, level_map):
         self.cells = pygame.sprite.Group()
         self.player_cell = pygame.sprite.GroupSingle()
         self.goal = pygame.sprite.GroupSingle()
         self.all_sprites = pygame.sprite.Group()
+        self.setup(level_map)
+        self.camera_shift = 0
+
+    def setup(self, level_map):
         for row_index, row in enumerate(level_map):
             for col_index, col in enumerate(row):
                 x = col_index * 64 # pylint: disable=invalid-name
@@ -65,3 +65,15 @@ class Level:
                 elif player.direction.y > 0:
                     player.rect.bottom = sprite.rect.top
                     player.direction.y = 0
+
+    def level_completion(self):
+        player = self.player_cell.sprite
+        if self.goal_cell.rect.colliderect(player.rect):
+            return True
+        return False
+
+    def update(self):
+        self.player.apply_gravity()
+        self.vertical_collision()
+        self.player.move()
+        self.horizontal_collision()
