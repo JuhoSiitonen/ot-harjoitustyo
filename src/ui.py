@@ -1,5 +1,5 @@
-import PySimpleGUI as sg
 import threading
+import PySimpleGUI as sg
 import pygame
 from level import Level
 from game import Game
@@ -12,7 +12,7 @@ class UI:
     def __init__(self):
         self.create_window()
         self.max_level = 1
-    
+
     def create_window(self):
         sg.set_options(font = "Franklin 20")
         self.layout = [
