@@ -21,11 +21,8 @@ class Game:
             self.level.player.direction.x = -1
         else:
             self.level.player.direction.x = 0
-
         if inputs[pygame.K_SPACE]:
             self.level.player.jump()
-
-        self.level.update()
 
     def start(self):
         running = True
@@ -34,7 +31,11 @@ class Game:
                 running = False
             if self.level.level_completion() is True:
                 running = False
+            if self.level.player_demise() is True:
+                self.level.initialize_sprite_groups()
+                self.level.setup()
             self.handle_inputs()
+            self.level.update()
             self.render()
             self.clock.tick()
         pygame.quit()
