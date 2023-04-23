@@ -2,20 +2,25 @@ import pygame
 from cells import Cell
 from player import Player
 from enemy import Enemy
+from settings import display_height
 
 class Level:
     def __init__(self, level_map):
+        self.level_map = level_map
+        self.initialize_sprite_groups()
+        self.setup()
+        self.camera_shift = 0
+
+    def initialize_sprite_groups(self):
         self.cells = pygame.sprite.Group()
         self.player_cell = pygame.sprite.GroupSingle()
         self.goal = pygame.sprite.GroupSingle()
         self.enemies = pygame.sprite.Group()
         self.blocker = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
-        self.setup(level_map)
-        self.camera_shift = 0
 
-    def setup(self, level_map):
-        for row_index, row in enumerate(level_map):
+    def setup(self):
+        for row_index, row in enumerate(self.level_map):
             for col_index, col in enumerate(row):
                 x = col_index * 64 # pylint: disable=invalid-name
                 y = row_index * 64 # pylint: disable=invalid-name
@@ -32,23 +37,23 @@ class Level:
                     self.enemy_cell = Enemy((x,y), 32, 64, "red")
                     self.enemies.add(self.enemy_cell)
                 elif col == "B":
-                    self.blocker_cell = Cell((x,y), 32, 64, "black")
+                    self.blocker_cell = Cell((x,y), 64, 64, "black")
                     self.blocker.add(self.blocker_cell)
         self.all_sprites.add(
+            self.blocker,
             self.cells,
             self.player_cell,
             self.goal,
-            self.enemies,
-            self.blocker
+            self.enemies
         )
 
     def camera(self):
         x = self.player.get_player_x() # pylint: disable=invalid-name
         direction = self.player.get_direction()
-        if x < 200 and direction < 0:
+        if x < 300 and direction < 0:
             self.camera_shift = 7
             self.player.speed = 0
-        elif x > 1000 and direction > 0:
+        elif x > 900 and direction > 0:
             self.camera_shift = -7
             self.player.speed = 0
         else:
@@ -82,14 +87,22 @@ class Level:
         if self.goal_cell.rect.colliderect(player.rect):
             return True
         return False
-    
+
+    def player_demise(self):
+        player = self.player_cell.sprite
+        if player.rect.y > display_height + 100:
+            return True
+        for sprite in self.enemies.sprites():
+            if sprite.rect.colliderect(player.rect):
+                return True
+        return False
+
     def enemy_movement(self):
         for enemy in self.enemies:
             for sprite in self.blocker.sprites():
                 if sprite.rect.colliderect(enemy.rect):
                     enemy.direction *= -1
             enemy.update((enemy.speed*enemy.direction))
-        
 
     def update(self):
         self.player.apply_gravity()
