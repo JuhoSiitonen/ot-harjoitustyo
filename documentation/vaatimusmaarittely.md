@@ -12,16 +12,16 @@ Ensimmäinen ja kolmas näkymä ovat PySimpleGUI kirjastolla toteutettuja näkym
 
 ## Toiminnallisuudet
 
-- Käyttöliittymä joka mahdollistaa pelattavan kentän valinnan
-- Pelihahmo joka liikkuu 2D kentissä vasemmalle, oikealle ja ylös ja alas. 
-- Peli on sivusta kuvattu ja se koostuu kentistä.
-- Pelihahmo voi kerätä kolikoita ja artifakteja ja niiden määärä näkyy ruudulla.
-- Peli sisältää vihollisia jotka liikkuvat ennaltamäärättyjä reittejä pitkin. 
-- Pelihahmon osuessa viholliseen pelattu kenttä alkaa alusta. 
-- Peli sisältää kaksi pelimoodia
-	- Normaali pelimoodi jossa aikaa ei ole rajoitettu
-	- Time attack moodi jossa kenttien läpäisyyn käytettävissä oleva aika on rajoitettu
-- Peli pitää kirjaa pelaajan parhaista läpäisyajoista tiedoston muodossa joka on tallennettu paikallisen koneen levylle.
+- [x] Käyttöliittymä joka mahdollistaa pelattavan kentän valinnan
+- [x] Pelihahmo joka liikkuu 2D kentissä vasemmalle, oikealle ja ylös ja alas. 
+- [x] Peli on sivusta kuvattu ja se koostuu kentistä.
+- [ ] Pelihahmo voi kerätä kolikoita ja artifakteja ja niiden määärä näkyy ruudulla.
+- [x] Peli sisältää vihollisia jotka liikkuvat ennaltamäärättyjä reittejä pitkin. 
+- [x] Pelihahmon osuessa viholliseen pelattu kenttä alkaa alusta. 
+- [ ] Peli sisältää kaksi pelimoodia
+	- [ ] Normaali pelimoodi jossa aikaa ei ole rajoitettu
+	- [ ] Time attack moodi jossa kenttien läpäisyyn käytettävissä oleva aika on rajoitettu
+- [ ] Peli pitää kirjaa pelaajan parhaista läpäisyajoista tiedoston muodossa joka on tallennettu paikallisen koneen levylle.
 
 ## Jatkokehitysideat
 
@@ -31,3 +31,4 @@ Mikäli edellä mainittujen toiminnallisuuksien jälkeen on vielä aikaa kurssin
 - Kaksinpeli mahdollisuus yhdellä näppäimistöllä.
 - Pelihahmon ja vihollisten sprite animaatiot liikkuessa.
 - Kaksi tai useampi valittavaa vaikeusastetta.
+- WYSIWYG kenttäeditori

@@ -30,5 +30,8 @@
 ## Viikko 5
 
 - Keskiviikko 19.4 3h (PySimpleGUI kirjaston implementointi)
-- Torstai 20.4 4h (Säikeiden käyttö pygame kanssa ja uuden UI luokan vaatimat muiden luokkien muutokset)
+- Torstai 20.4 4h (Säikeiden käyttö pygame kanssa, uuden UI luokan vaatimat muiden luokkien muutokset ja vihollisten lisäys)
+- Sunnuntai 23.4 3h (Törmäyksen tarkistus vihollisien kanssa, kentästä putoamisen tarkistus ja kentän uudelleen käynnistys. Dokumentaation päivitys)
+
+- Viikon totaali : 
 

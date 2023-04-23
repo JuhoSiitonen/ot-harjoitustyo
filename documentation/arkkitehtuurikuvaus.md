@@ -5,13 +5,14 @@
 ```mermaid
 
 classDiagram
-    UI <|-- Game
+    Game <|-- UI
     Game <|-- Clock
     Game <|-- Event_handling
     Game <|-- Level
     Game <|-- Renderer
     Player -- Level
     Cells -- Level
+    Enemy -- Level
     UI -- Main
 
     class Player{
@@ -29,6 +30,7 @@ classDiagram
         +horizontal_collision()
         +vertical_collision()
         +level_completion()
+        +player_demise()
         +update()
     }
     class Renderer{
@@ -54,4 +56,7 @@ classDiagram
         +create_window()
         +run()
         +run_game()
+    }
+    class Enemy{
+        +update()
     }

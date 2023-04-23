@@ -25,5 +25,6 @@
 - PySimpleGUI luo uuden säikeen pygame ikkunalle kun se käynnistetään valitsemalla pelattava kenttä
 - Kentän maalin funktionaalisuus lisätty, maaliin pääseminen sulkee pygame ikkunan ja sen säikeen.
 - Pelaajan hyppy korjattu toimimaan ainoastaan kun pelaaja koskee "maahan"
-- 
+- Lisätty vihollisia (moduuli enemy.py) peliin jotka liikkuvat oikealle ja vasemmalle kunnes osuvat näkymättömään rajoittavaan soluun jolloin niiden liikensuunta muuttuu päinvastaiseksi
+- Lisätty tarkistus sille mikäli pelaaja putoaa peliruudulta tai osuu viholliseen. Niiden seurauksena kenttä alkaa alusta.
 
