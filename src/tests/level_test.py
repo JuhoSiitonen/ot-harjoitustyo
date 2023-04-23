@@ -83,3 +83,17 @@ class TestLevel(unittest.TestCase):
         for enemy in self.level.enemies:
             self.assertNotEqual(enemy.rect.x, start)
 
+    def test_player_demise_out_of_bounds(self):
+        player = self.level.player_cell.sprite
+        player.rect.y = 700
+        self.assertEqual(self.level.player_demise(), True)
+
+    def test_player_demise_enemy_collision(self):
+        player = self.level.player_cell.sprite
+        player.rect.x += 450
+        player.rect.y += 200
+        self.assertEqual(self.level.player_demise(), True)
+
+    def test_player_demise_no_collision_in_bounds_false(self):
+        self.assertEqual(self.level.player_demise(), False)
+
