@@ -1,12 +1,22 @@
-level_map_1 = ['000000000000000000000000',
-             '000000000000000000000000',
-             '000000000000000000000000',
-             'xxx000000000000000B0E00B',
-             'xxx000000P0G0000000xxxxx',
-             '0000000xxxxx000000xxxxxx',
-             '0000000xxxxx00000xxx0000',
-             'xxxxx00000000B00E000B000',
-             'xxxxxxxx000000xxxxxx0000']
+level_map_1 = ['                        ',
+             '                        ',
+             '                        ',
+             'xxx               B E  B',
+             'xxx      P G       xxxxx',
+             '       xxxxx      xxxxxx',
+             '       xxxxx     xxx    ',
+             'xxxxx        B  E   B   ',
+             'xxxxxxxx      xxxxxx    ']
+
+level_map_2 = ['                                       ',
+             '                                       ',
+             '                                      G',
+             'xxxxxxx                          xxxxxx',
+             '            B    E   B        xx       ',
+             '             xxxxxxxx     B   E   B    ',
+             '                           xxxxxxx     ',
+             ' P         B  E    B                   ',
+             'xxxxxxxx    xxxxxxx    xxx             ']
 
 CELL_SIZE = 64
 display_height = CELL_SIZE * len(level_map_1)

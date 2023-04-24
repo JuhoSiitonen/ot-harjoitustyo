@@ -1,11 +1,11 @@
 import threading
 import PySimpleGUI as sg
 import pygame
-from level import Level
-from game import Game
-from renderer import Renderer
-from event_handling import EventHandling
-from clock import Clock
+from logic.level import Level
+from logic.game import Game
+from support.renderer import Renderer
+from support.event_handling import EventHandling
+from support.clock import Clock
 from settings import *
 
 class UI:
@@ -29,6 +29,9 @@ class UI:
                 break
             if event == "Level 1":
                 pygame_thread = threading.Thread(target=self.run_game(level_map_1))
+                pygame_thread.start()
+            if event == "Level 2":
+                pygame_thread = threading.Thread(target=self.run_game(level_map_2))
                 pygame_thread.start()
         pygame_thread.join()
 
