@@ -4,7 +4,7 @@ level_map_1 = ['                        ',
              'xxx               B E  B',
              'xxx      P G       xxxxx',
              '       xxxxx      xxxxxx',
-             '       xxxxx     xxx    ',
+             '  C    xxxxx     xxx    ',
              'xxxxx        B  E   B   ',
              'xxxxxxxx      xxxxxx    ']
 
@@ -19,5 +19,5 @@ level_map_2 = ['                                       ',
              'xxxxxxxx    xxxxxxx    xxx             ']
 
 CELL_SIZE = 64
-display_height = CELL_SIZE * len(level_map_1)
-display_width = 1200
+DISPLAY_HEIGHT = CELL_SIZE * len(level_map_1)
+DISPLAY_WIDTH = 1200

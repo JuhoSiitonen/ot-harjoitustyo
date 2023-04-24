@@ -1,8 +1,8 @@
 import pygame
-from cells import Cell
-from player import Player
-from enemy import Enemy
-from settings import display_height
+from sprites.cells import Cell
+from sprites.player import Player
+from sprites.enemy import Enemy
+from settings import DISPLAY_HEIGHT
 
 class Level:
     def __init__(self, level_map):
@@ -17,6 +17,7 @@ class Level:
         self.goal = pygame.sprite.GroupSingle()
         self.enemies = pygame.sprite.Group()
         self.blocker = pygame.sprite.Group()
+        self.coins = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
     def setup(self):
@@ -39,8 +40,12 @@ class Level:
                 elif col == "B":
                     self.blocker_cell = Cell((x,y), 64, 64, "black")
                     self.blocker.add(self.blocker_cell)
+                elif col == "C":
+                    self.coin_cell = Cell((x,y), 16, 16, "yellow")
+                    self.coins.add(self.coin_cell)
         self.all_sprites.add(
             self.blocker,
+            self.coins,
             self.cells,
             self.player_cell,
             self.goal,
@@ -72,7 +77,6 @@ class Level:
 
     def vertical_collision(self):
         player = self.player_cell.sprite
-
         for sprite in self.cells.sprites():
             if sprite.rect.colliderect(player.rect):
                 if player.direction.y < 0:
@@ -82,6 +86,12 @@ class Level:
                     player.rect.bottom = sprite.rect.top
                     player.direction.y = 0
 
+    def coin_collision(self):
+        player = self.player_cell.sprite
+        for sprite in self.coins.sprites():
+            if sprite.rect.colliderect(player.rect):
+                sprite.kill()
+
     def level_completion(self):
         player = self.player_cell.sprite
         if self.goal_cell.rect.colliderect(player.rect):
@@ -90,7 +100,7 @@ class Level:
 
     def player_demise(self):
         player = self.player_cell.sprite
-        if player.rect.y > display_height + 100:
+        if player.rect.y > DISPLAY_HEIGHT + 100:
             return True
         for sprite in self.enemies.sprites():
             if sprite.rect.colliderect(player.rect):
@@ -109,4 +119,5 @@ class Level:
         self.vertical_collision()
         self.player.move()
         self.horizontal_collision()
+        self.coin_collision()
         self.enemy_movement()
