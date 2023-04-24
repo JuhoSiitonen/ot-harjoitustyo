@@ -2,7 +2,7 @@ import pygame
 from sprites.cells import Cell
 from sprites.player import Player
 from sprites.enemy import Enemy
-from settings import DISPLAY_HEIGHT
+from settings import DISPLAY_HEIGHT, CELL_SIZE
 
 class Level:
     def __init__(self, level_map):
@@ -23,8 +23,8 @@ class Level:
     def setup(self):
         for row_index, row in enumerate(self.level_map):
             for col_index, col in enumerate(row):
-                x = col_index * 64 # pylint: disable=invalid-name
-                y = row_index * 64 # pylint: disable=invalid-name
+                x = col_index * CELL_SIZE # pylint: disable=invalid-name
+                y = row_index * CELL_SIZE # pylint: disable=invalid-name
                 if col == "x":
                     self.cell = Cell((x, y), 64, 64, "white")
                     self.cells.add(self.cell)
@@ -41,7 +41,7 @@ class Level:
                     self.blocker_cell = Cell((x,y), 64, 64, "black")
                     self.blocker.add(self.blocker_cell)
                 elif col == "C":
-                    self.coin_cell = Cell((x,y), 16, 16, "yellow")
+                    self.coin_cell = Cell((x,y), 24, 24, "yellow")
                     self.coins.add(self.coin_cell)
         self.all_sprites.add(
             self.blocker,
@@ -67,7 +67,6 @@ class Level:
 
     def horizontal_collision(self):
         player = self.player_cell.sprite
-
         for sprite in self.cells.sprites():
             if sprite.rect.colliderect(player.rect):
                 if player.direction.x < 0:

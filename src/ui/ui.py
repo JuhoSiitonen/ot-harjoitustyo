@@ -1,4 +1,5 @@
 import threading
+import sys
 import PySimpleGUI as sg
 import pygame
 from logic.level import Level
@@ -6,7 +7,7 @@ from logic.game import Game
 from support.renderer import Renderer
 from support.event_handling import EventHandling
 from support.clock import Clock
-from settings import *
+from settings import level_map_1, level_map_2, DISPLAY_HEIGHT, DISPLAY_WIDTH
 
 class UI:
     def __init__(self):
@@ -24,9 +25,9 @@ class UI:
 
     def run(self):
         while True:
-            event, values = self.window.read()
-            if event == sg.WIN_CLOSED:
-                break
+            event, values = self.window.read() # pylint: disable=unused-variable
+            if event in (sg.WIN_CLOSED, "Exit"):
+                sys.exit()
             if event == "Level 1":
                 pygame_thread = threading.Thread(target=self.run_game(level_map_1))
                 pygame_thread.start()
@@ -36,7 +37,7 @@ class UI:
         pygame_thread.join()
 
     def run_game(self, level_map):
-        display = pygame.display.set_mode((display_width, display_height))
+        display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
         clock = Clock()
         level = Level(level_map)
