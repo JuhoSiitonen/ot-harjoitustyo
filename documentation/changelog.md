@@ -27,4 +27,5 @@
 - Pelaajan hyppy korjattu toimimaan ainoastaan kun pelaaja koskee "maahan"
 - Lisätty vihollisia (moduuli enemy.py) peliin jotka liikkuvat oikealle ja vasemmalle kunnes osuvat näkymättömään rajoittavaan soluun jolloin niiden liikensuunta muuttuu päinvastaiseksi
 - Lisätty tarkistus sille mikäli pelaaja putoaa peliruudulta tai osuu viholliseen. Niiden seurauksena kenttä alkaa alusta.
-
+- Moduulien asettaminen uusiin asianmukaisiin kansioihin, testikattavuuden nosto.
+- Lisätty kolikko spritet peliin jotka tuhoutuvat törmätessään pelaajaan

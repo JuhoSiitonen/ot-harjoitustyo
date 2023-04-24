@@ -32,6 +32,8 @@
 - Keskiviikko 19.4 3h (PySimpleGUI kirjaston implementointi)
 - Torstai 20.4 4h (Säikeiden käyttö pygame kanssa, uuden UI luokan vaatimat muiden luokkien muutokset ja vihollisten lisäys)
 - Sunnuntai 23.4 3h (Törmäyksen tarkistus vihollisien kanssa, kentästä putoamisen tarkistus ja kentän uudelleen käynnistys. Dokumentaation päivitys)
+- Maanantai 24.4 2h (Uusi kansionti moduuleille, dokumentaation täydennys, release, bugien korjausta, pylint mukaisia korjauksia)
+- Tiistai 25.4 2h (sekvenssikaavio ja kolikoiden lisäys peliin)
 
-- Viikon totaali : 
+- Viikon totaali : 14h
 

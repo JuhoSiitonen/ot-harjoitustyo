@@ -29,6 +29,7 @@ classDiagram
         +camera()
         +horizontal_collision()
         +vertical_collision()
+        +coin_collision()
         +level_completion()
         +player_demise()
         +update()

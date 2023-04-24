@@ -42,6 +42,16 @@ Sovelluksen testikattavuuden saa html tiedostoksi seuraavalla komennolla:
 
 **poetry run invoke coverage-report**
 
+## Pelin pelaus
+
+Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönnistä hahmo hyppää. Punaiset hahmot ovat vihollisia joihin osuttaessa kenttä alkaa alusta, samoin käy myös kun pelaajahahmo putoaa pois kentältä. Keltaiset neliöt ovat kolikkoja ja sininen suorakulmio on maali. Pelaajahahmo voi roikkua "katosta" hyppynappi painettuna pohjaan. 
+
+## Tunnetut ongelmat
+
+- Pelin collision detection on vielä hieman buginen, hahmo siirtyy joskus esteiden päälle
+- Kolikoiden kerätty määrä ei vielä näytöllä
+- Uusien kenttien lisäys vaatii "napin" lisäämisen käyttöliittymään, ei vielä parametrisoitu
+
 
 
 
