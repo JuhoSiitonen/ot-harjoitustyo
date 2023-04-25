@@ -1,7 +1,7 @@
 import unittest
 import pygame
-from level import Level
-from game import Game
+from logic.level import Level
+from logic.game import Game
 
 class StubClock:
     def tick(self, fps):
@@ -31,7 +31,7 @@ level_map = ['00000000000000000000',
              '00000000000000000000',
              '00000000000000000000',
              'xxx000000x0000000000',
-             'xxx000000P0000000xxx',
+             'xxx000000PG000000xxx',
              '0000000xxxxx00000xxx',
              '0000000xxxxx00000xxx',
              'xxxxx000000000000000',

@@ -1,6 +1,6 @@
 import unittest
 import pygame
-from player import Player
+from sprites.player import Player
 
 
 class TestPlayer(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 import pygame
-from level import Level
+from logic.level import Level
 
 level_map = ['00000000000000000000',
              '00000000000000000000',
