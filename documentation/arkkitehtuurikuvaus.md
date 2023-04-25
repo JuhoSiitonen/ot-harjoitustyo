@@ -6,10 +6,6 @@
 
 classDiagram
     Game <|-- UI
-    UI <-- Clock
-    UI <-- Event_handling
-    UI <-- Level
-    UI <-- Renderer
     Game --|> Clock
     Game --|> Event_handling
     Game --|> Level
@@ -68,6 +64,8 @@ classDiagram
 
 ```
 
-## Sovelluksen rakenne
+## Sovelluksen toiminnallisuudet
+
+Pelin käynnistäminen sekvenssikaaviona
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_sequencediagram.png)
