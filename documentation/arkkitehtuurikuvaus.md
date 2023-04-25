@@ -61,3 +61,9 @@ classDiagram
     class Enemy{
         +update()
     }
+
+```
+
+## Sovelluksen rakenne
+
+![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_sequencediagram.png)
