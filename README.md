@@ -42,6 +42,12 @@ Sovelluksen testikattavuuden saa html tiedostoksi seuraavalla komennolla:
 
 **poetry run invoke coverage-report**
 
+### Pylint
+
+Sovelluksen Pylint tuloksen saa komennolla:
+
+**poetry run invoke lint**
+
 ## Pelin pelaus
 
 Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönnistä hahmo hyppää. Punaiset hahmot ovat vihollisia joihin osuttaessa kenttä alkaa alusta, samoin käy myös kun pelaajahahmo putoaa pois kentältä. Keltaiset neliöt ovat kolikkoja ja sininen suorakulmio on maali. Pelaajahahmo voi roikkua "katosta" hyppynappi painettuna pohjaan. 
