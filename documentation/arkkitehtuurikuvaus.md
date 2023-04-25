@@ -6,10 +6,14 @@
 
 classDiagram
     Game <|-- UI
-    Game <|-- Clock
-    Game <|-- Event_handling
-    Game <|-- Level
-    Game <|-- Renderer
+    UI <-- Clock
+    UI <-- Event_handling
+    UI <-- Level
+    UI <-- Renderer
+    Game --|> Clock
+    Game --|> Event_handling
+    Game --|> Level
+    Game --|> Renderer
     Player -- Level
     Cells -- Level
     Enemy -- Level
