@@ -90,6 +90,7 @@ class Level:
         for sprite in self.coins.sprites():
             if sprite.rect.colliderect(player.rect):
                 sprite.kill()
+                self.player.coins += 1
 
     def level_completion(self):
         player = self.player_cell.sprite

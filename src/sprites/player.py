@@ -13,6 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.speed = 7
         self.gravity = 0.7
         self.jump_speed = -15
+        self.coins = 0
 
     def move(self):
         change = self.direction.x * self.speed
