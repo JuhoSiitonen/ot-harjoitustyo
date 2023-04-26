@@ -10,12 +10,12 @@ level_map_1 = ['                        ',
 
 level_map_2 = ['                                       ',
              '                                       ',
-             '                                      G',
+             ' A                                    G',
              'xxxxxxx                          xxxxxx',
              '            B    E   B        xx       ',
              '             xxxxxxxx     B   E   B    ',
              '                           xxxxxxx     ',
-             ' P         B  E    B                   ',
+             ' P         B  E C  B                   ',
              'xxxxxxxx    xxxxxxx    xxx             ']
 
 CELL_SIZE = 64

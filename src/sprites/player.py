@@ -8,12 +8,12 @@ class Player(pygame.sprite.Sprite):
         self.image.fill("green")
         self.rect = self.image.get_rect(topleft=pos)
 
-        # Player movement
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 7
         self.gravity = 0.7
         self.jump_speed = -15
         self.coins = 0
+        self.artifacts = 0
 
     def move(self):
         change = self.direction.x * self.speed

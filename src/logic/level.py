@@ -18,6 +18,7 @@ class Level:
         self.enemies = pygame.sprite.Group()
         self.blocker = pygame.sprite.Group()
         self.coins = pygame.sprite.Group()
+        self.artifacts = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
     def setup(self):
@@ -43,9 +44,13 @@ class Level:
                 elif col == "C":
                     self.coin_cell = Cell((x,y), 24, 24, "yellow")
                     self.coins.add(self.coin_cell)
+                elif col == "A":
+                    self.artifact_cell = Cell((x,y), 24, 24, "red")
+                    self.artifacts.add(self.artifact_cell)
         self.all_sprites.add(
             self.blocker,
             self.coins,
+            self.artifacts,
             self.cells,
             self.player_cell,
             self.goal,
@@ -92,6 +97,13 @@ class Level:
                 sprite.kill()
                 self.player.coins += 1
 
+    def artifact_collision(self):
+        player = self.player_cell.sprite
+        for sprite in self.artifacts.sprites():
+            if sprite.rect.colliderect(player.rect):
+                sprite.kill()
+                self.player.artifacts += 1
+
     def level_completion(self):
         player = self.player_cell.sprite
         if self.goal_cell.rect.colliderect(player.rect):
@@ -115,9 +127,9 @@ class Level:
             enemy.update((enemy.speed*enemy.direction))
 
     def update(self):
-        self.player.apply_gravity()
-        self.vertical_collision()
         self.player.move()
         self.horizontal_collision()
+        self.player.apply_gravity()
+        self.vertical_collision()
         self.coin_collision()
         self.enemy_movement()
