@@ -17,5 +17,5 @@ class Clock:
     def tick(self):
         """Method to call pygame.clock objects tick method and handle framerate.
         """
-        
+
         self.clock.tick(60)

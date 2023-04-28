@@ -23,10 +23,10 @@ class Game:
             level (object): Level object which handles sprites and their interactions in the 
             rendered level.
             clock (object): Clock object which refreshes the Pygame window 60 time a second.
-            event_handling (object): Event_handling object which sends the Pygame events and inputs
-            to this class.
-            renderer (object): Renderer object which handles rendering the Pygame screen with sprites
-            and text.
+            event_handling (object): Event_handling object which sends the Pygame events and 
+            inputs to this class.
+            renderer (object): Renderer object which handles rendering the Pygame screen 
+            with sprites and text.
         """
         self.level = level
         self.clock = clock
@@ -74,7 +74,7 @@ class Game:
 
         running = True
         while running:
-            if self.handle_events() is False:
+            if not self.handle_events() or self.renderer.timeout:
                 running = False
             if self.level.level_completion() is True:
                 running = False
@@ -90,5 +90,5 @@ class Game:
     def render(self):
         """Calls renderer object to render the pygame screen.
         """
-        
+
         self.renderer.render()

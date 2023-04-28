@@ -1,5 +1,5 @@
-import pygame
 import time
+import pygame
 
 class Renderer:
     """Class to render the Pygame screen with the sprites initialized by the level
@@ -22,11 +22,13 @@ class Renderer:
             level (object): Level object which initializes the sprites and handles 
             their interactions.
             time_attack (bool): Boolean to tell if time attack mode is chosen. 
+            timeout (bool): Boolean to tell if time has run out.
         """
 
         self.display = display
         self.level = level
         self.time_attack = time_attack
+        self.timeout = False
         self.start = time.time()
 
     def counter_text(self, count, color, placement):
@@ -52,6 +54,8 @@ class Renderer:
         if self.time_attack:
             counter = round((15.0 - (time.time() - self.start)), 2)
             self.counter_text(counter, "white", (100, 25))
+            if counter < 0.01:
+                self.timeout = True
 
     def render(self):
         """Method to fill pygame display surface with a black color first, then 
@@ -61,7 +65,7 @@ class Renderer:
         Then it updates the pygame window with this information and calls level.camera.
         To update camera shift value. 
         """
-        
+
         self.display.fill("black")
         self.level.all_sprites.update(self.level.camera_shift)
         self.level.all_sprites.draw(self.display)

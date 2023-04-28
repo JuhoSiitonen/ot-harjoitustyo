@@ -31,7 +31,7 @@ class UI:
         """Creates the PySimpleGUI window with a layout of buttons with a selected color 
         and a selected font and font size.
         """
-        
+
         sg.set_options(font = "Franklin 20")
         self.layout = [
             [sg.Text("Select level")],
@@ -82,7 +82,7 @@ class UI:
         Args:
             level_map (list): Nested list with the level layout.
         """
-        
+
         display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
         clock = Clock()

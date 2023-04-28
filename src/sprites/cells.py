@@ -37,5 +37,5 @@ class Cell(pygame.sprite.Sprite):
         Args:
             x_dx (int): The change in x value which sprite needs to be shifted.
         """
-        
+
         self.rect.x += x_dx
