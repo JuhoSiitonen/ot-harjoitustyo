@@ -37,3 +37,8 @@
 
 - Viikon totaali : 14h
 
+## Viikko 6
+
+- Keskiviikko 26.4 2h (lisää sekvenssikaavioita, kolikoiden ja artifaktien laskuri näytölle, artifaktit lisätty mukaan, törmäysten virheellinen tarkistus pygamessa korjattu, docstring dokumentaatio)
+- Torstai 27.4 2h (Time attack vaihtoehto luotu käyttöliittymään ja pygame ikkuna näyttää kuluneen ajan jos valinta on aktiivinen)
+

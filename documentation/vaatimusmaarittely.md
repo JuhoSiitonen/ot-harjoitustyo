@@ -15,7 +15,7 @@ Ensimmäinen ja kolmas näkymä ovat PySimpleGUI kirjastolla toteutettuja näkym
 - [x] Käyttöliittymä joka mahdollistaa pelattavan kentän valinnan
 - [x] Pelihahmo joka liikkuu 2D kentissä vasemmalle, oikealle ja ylös ja alas. 
 - [x] Peli on sivusta kuvattu ja se koostuu kentistä.
-- [ ] Pelihahmo voi kerätä kolikoita ja artifakteja ja niiden määärä näkyy ruudulla.
+- [x] Pelihahmo voi kerätä kolikoita ja artifakteja ja niiden määärä näkyy ruudulla.
 - [x] Peli sisältää vihollisia jotka liikkuvat ennaltamäärättyjä reittejä pitkin. 
 - [x] Pelihahmon osuessa viholliseen pelattu kenttä alkaa alusta. 
 - [ ] Peli sisältää kaksi pelimoodia

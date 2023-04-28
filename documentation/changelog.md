@@ -28,4 +28,12 @@
 - Lisätty vihollisia (moduuli enemy.py) peliin jotka liikkuvat oikealle ja vasemmalle kunnes osuvat näkymättömään rajoittavaan soluun jolloin niiden liikensuunta muuttuu päinvastaiseksi
 - Lisätty tarkistus sille mikäli pelaaja putoaa peliruudulta tai osuu viholliseen. Niiden seurauksena kenttä alkaa alusta.
 - Moduulien asettaminen uusiin asianmukaisiin kansioihin, testikattavuuden nosto.
-- Lisätty kolikko spritet peliin jotka tuhoutuvat törmätessään pelaajaan
+- Lisätty kolikko spritet peliin jotka tuhoutuvat törmätessään pelaajaan.
+
+## Viikko 6
+
+- Lisätty artifakti spritet jotka tuhoutuvat osuessaan pelaajan.
+- Kolikoiden ja artifaktien laskuri oikeassa ylänurkassa pygame ikkunaa pelatessa, laskuri nollaantuu kun pelaaja osuu viholliseen tai tippuu kentältä pois.
+- Korjattu pelaajan yhteentörmäys logiikka joka tarkastaa ettei pelaaja voi mennä seinistä tai lattioista läpi. Ensin tehdään vertikaali suunnassa törmäystarkistus, sitten horisontaali suunnassa ja pelaaja siirtyy seinän, lattian tai katon suhteen oikealle paikalle, eikä mene läpi tai siirry virheellisesti esteen yläpuolelle liikkuessaan. 
+- Lisätty nappi Time Attack pysimplegui käyttöliittymään, jonka avulla voi valita eri pelimoodin jossa läpäisyaika on rajallinen.
+- Time attack moodi valittuna lisätty vasempaan yläkulmaan ajastin joka näkyy pelatessa.
