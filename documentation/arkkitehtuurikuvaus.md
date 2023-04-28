@@ -69,3 +69,7 @@ classDiagram
 Pelin käynnistäminen sekvenssikaaviona
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_sequencediagram.png)
+
+Level luokan toiminta sekvenssikaaviona
+
+![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/Levelclass%20sequence.png)

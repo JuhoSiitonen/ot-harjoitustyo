@@ -18,9 +18,9 @@ Ensimmäinen ja kolmas näkymä ovat PySimpleGUI kirjastolla toteutettuja näkym
 - [x] Pelihahmo voi kerätä kolikoita ja artifakteja ja niiden määärä näkyy ruudulla.
 - [x] Peli sisältää vihollisia jotka liikkuvat ennaltamäärättyjä reittejä pitkin. 
 - [x] Pelihahmon osuessa viholliseen pelattu kenttä alkaa alusta. 
-- [ ] Peli sisältää kaksi pelimoodia
-	- [ ] Normaali pelimoodi jossa aikaa ei ole rajoitettu
-	- [ ] Time attack moodi jossa kenttien läpäisyyn käytettävissä oleva aika on rajoitettu
+- [x] Peli sisältää kaksi pelimoodia
+	- [x] Normaali pelimoodi jossa aikaa ei ole rajoitettu
+	- [x] Time attack moodi jossa kenttien läpäisyyn käytettävissä oleva aika on rajoitettu
 - [ ] Peli pitää kirjaa pelaajan parhaista läpäisyajoista tiedoston muodossa joka on tallennettu paikallisen koneen levylle.
 
 ## Jatkokehitysideat

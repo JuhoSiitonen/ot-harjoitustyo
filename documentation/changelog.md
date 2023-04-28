@@ -37,3 +37,4 @@
 - Korjattu pelaajan yhteentörmäys logiikka joka tarkastaa ettei pelaaja voi mennä seinistä tai lattioista läpi. Ensin tehdään vertikaali suunnassa törmäystarkistus, sitten horisontaali suunnassa ja pelaaja siirtyy seinän, lattian tai katon suhteen oikealle paikalle, eikä mene läpi tai siirry virheellisesti esteen yläpuolelle liikkuessaan. 
 - Lisätty nappi Time Attack pysimplegui käyttöliittymään, jonka avulla voi valita eri pelimoodin jossa läpäisyaika on rajallinen.
 - Time attack moodi valittuna lisätty vasempaan yläkulmaan ajastin joka näkyy pelatessa.
+- Docstring dokumentaatio lisätty. 
