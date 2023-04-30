@@ -41,4 +41,5 @@
 
 - Keskiviikko 26.4 2h (lisää sekvenssikaavioita, kolikoiden ja artifaktien laskuri näytölle, artifaktit lisätty mukaan, törmäysten virheellinen tarkistus pygamessa korjattu, docstring dokumentaatio)
 - Torstai 27.4 4h (Time attack vaihtoehto luotu käyttöliittymään ja pygame ikkuna näyttää kuluneen ajan jos valinta on aktiivinen, docstring dokumentaatio)
+- Lauantai 29.4 3h (Testikattavuuden nostaminen)
 

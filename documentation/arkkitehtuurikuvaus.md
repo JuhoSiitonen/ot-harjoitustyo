@@ -66,6 +66,10 @@ classDiagram
 
 ## Sovelluksen toiminnallisuudet
 
+Kun sovellus käynnistyy se avaa PySimpleGUI ikkunan joka toimii käyttöliittymänä sovellukselle. Tästä ikkunasta voi siirtyä itse peliin valitsemalla jonkin level painikkeista. Sovellus luo uuden säikeen ja käynnistää pygame kirjaston avulla renderöidyn pelinäkymän. Mikäli klikkaat Time Attack painiketta, peli käynnistyy rajoitetulla ajalla joka näkyy ajastimena vasemmassa nurkassa pelinäkymää. 
+
+![Aloitusruutu](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/jumpman_pysimplegui.png)
+
 Pelin käynnistäminen sekvenssikaaviona
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_sequencediagram.png)
