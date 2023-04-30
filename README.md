@@ -26,10 +26,6 @@ Sovelluksen vaatimat kirjastot voi asentaa komennolla:
 
 **poetry install** 
 
-Jonka jälkeen sovelluksen alustus komennolla:
-
-**poetry run invoke build**
-
 Sovelluksen voi sen jälkeen käynnistää komennolla:
 
 **poetry run invoke start**
