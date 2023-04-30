@@ -4,7 +4,7 @@ level_map_1 = ['                        ',
              'xxx               B E  B',
              'xxx      P G       xxxxx',
              '       xxxxx      xxxxxx',
-             '  C    xxxxx     xxx    ',
+             'A C    xxxxx     xxx    ',
              'xxxxx        B  E   B   ',
              'xxxxxxxx      xxxxxx    ']
 

@@ -132,4 +132,5 @@ class Level:
         self.player.apply_gravity()
         self.vertical_collision()
         self.coin_collision()
+        self.artifact_collision()
         self.enemy_movement()
