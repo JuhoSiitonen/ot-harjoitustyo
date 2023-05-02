@@ -52,9 +52,8 @@ Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönni
 
 ## Tunnetut ongelmat
 
-- Pelin collision detection on vielä hieman buginen, hahmo siirtyy joskus esteiden päälle
-- Kolikoiden kerätty määrä ei vielä näytöllä
-- Uusien kenttien lisäys vaatii "napin" lisäämisen käyttöliittymään, ei vielä parametrisoitu
+- Uusien kenttien lisäys vaatii "napin" lisäämisen käyttöliittymään, ei vielä parametrisoitu.
+- Level luokalla liikaa vastuita ja liikaa instanssimuuttujia.
 
 
 
