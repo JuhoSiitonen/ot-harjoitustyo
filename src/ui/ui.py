@@ -7,6 +7,7 @@ from logic.game import Game
 from support.renderer import Renderer
 from support.event_handling import EventHandling
 from support.clock import Clock
+from support.helper_functions import level_file_reader
 from settings import level_map_1, level_map_2, DISPLAY_HEIGHT, DISPLAY_WIDTH
 
 class UI:
@@ -24,15 +25,22 @@ class UI:
         """Class constructor to create a PySimpleGUi UI window. 
         """
 
+        self.check_levels_file()
         self.create_window()
         self.time_attack = False
+
+    def check_levels_file(self):
+        self.level_maps = level_file_reader()
 
     def create_window(self):
         """Creates the PySimpleGUI window with a layout of buttons with a selected color 
         and a selected font and font size.
         """
+        level_amount = len(self.level_maps)
 
         sg.set_options(font = "Franklin 20")
+
+        self.layout = []
         self.layout = [
             [sg.Text("Select level")],
             [sg.Button("Level 1"), sg.Button("Level 2")],
@@ -67,10 +75,10 @@ class UI:
             if event == "Time Attack":
                 self.check_time_attack()
             if event == "Level 1":
-                pygame_thread = threading.Thread(target=self.run_game(level_map_1))
+                pygame_thread = threading.Thread(target=self.run_game(self.level_maps[0]))
                 pygame_thread.start()
             if event == "Level 2":
-                pygame_thread = threading.Thread(target=self.run_game(level_map_2))
+                pygame_thread = threading.Thread(target=self.run_game(self.level_maps[1]))
                 pygame_thread.start()
         pygame_thread.join()
 
