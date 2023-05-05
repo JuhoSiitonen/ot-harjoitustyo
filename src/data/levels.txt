@@ -1,0 +1,20 @@
+                        
+                        
+                        
+xxx               B E  B
+xxx      P G       xxxxx
+       xxxxx      xxxxxx
+A C    xxxxx     xxx    
+xxxxx        B  E   B   
+xxxxxxxx      xxxxxx    
+-
+                                       
+                                       
+ A                                    G
+xxxxxxx                          xxxxxx
+            B    E   B        xx       
+             xxxxxxxx     B   E   B    
+                           xxxxxxx     
+ P         B  E C  B                   
+xxxxxxxx    xxxxxxx    xxx             
+-
