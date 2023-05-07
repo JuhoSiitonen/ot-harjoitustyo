@@ -8,7 +8,7 @@ from support.renderer import Renderer
 from support.event_handling import EventHandling
 from support.clock import Clock
 from support.helper_functions import level_file_reader
-from settings import level_map_1, level_map_2, DISPLAY_HEIGHT, DISPLAY_WIDTH
+from settings import DISPLAY_HEIGHT, DISPLAY_WIDTH
 
 class UI:
     """Class to initialize a PySimpleGUI Ui window and subsequently open
@@ -22,7 +22,9 @@ class UI:
     """
 
     def __init__(self):
-        """Class constructor to create a PySimpleGUi UI window. 
+        """Class constructor to create a PySimpleGUi UI window by first 
+        reading from data folders levels text file and using that 
+        information to create buttons for the levels to the window. 
         """
 
         self.check_levels_file()
@@ -34,18 +36,17 @@ class UI:
 
     def create_window(self):
         """Creates the PySimpleGUI window with a layout of buttons with a selected color 
-        and a selected font and font size.
+        and a selected font and font size. Level buttons are created as a list 
+        comprehension and concatenated to the window layout.
         """
-        level_amount = len(self.level_maps)
 
         sg.set_options(font = "Franklin 20")
-
-        self.layout = []
-        self.layout = [
-            [sg.Text("Select level")],
-            [sg.Button("Level 1"), sg.Button("Level 2")],
-            [sg.Button("Time Attack", button_color = (None, "grey")), sg.Button("Exit")]
-            ]
+        lvls = len(self.level_maps)
+        header = [[sg.Text("Select level")]]
+        lvl_buttons = [[sg.Button(f"Level {i}") for i in range(1, lvls+1)]]
+        end_buttons = [[sg.Button("Time Attack", 
+            button_color = (None, "grey")), sg.Button("Exit")]]
+        self.layout = header + lvl_buttons + end_buttons
         self.window = sg.Window("Jumpman", self.layout)
 
     def check_time_attack(self):
@@ -74,12 +75,10 @@ class UI:
                 sys.exit()
             if event == "Time Attack":
                 self.check_time_attack()
-            if event == "Level 1":
-                pygame_thread = threading.Thread(target=self.run_game(self.level_maps[0]))
-                pygame_thread.start()
-            if event == "Level 2":
-                pygame_thread = threading.Thread(target=self.run_game(self.level_maps[1]))
-                pygame_thread.start()
+            for i in range (1, len(self.level_maps)+1):
+                if event == f"Level {i}":
+                    pygame_thread = threading.Thread(target=self.run_game(self.level_maps[i-1]))
+                    pygame_thread.start()
         pygame_thread.join()
 
     def run_game(self, level_map):
