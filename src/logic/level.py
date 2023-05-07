@@ -5,11 +5,12 @@ from sprites.enemy import Enemy
 from settings import DISPLAY_HEIGHT, CELL_SIZE
 
 class Level:
-    def __init__(self, level_map):
+    def __init__(self, level_map, time_attack):
         self.level_map = level_map
         self.initialize_sprite_groups()
         self.setup()
         self.camera_shift = 0
+        self.time_attack = time_attack
 
     def initialize_sprite_groups(self):
         self.cells = pygame.sprite.Group()
@@ -21,32 +22,24 @@ class Level:
         self.artifacts = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
-    def setup(self):
-        for row_index, row in enumerate(self.level_map):
-            for col_index, col in enumerate(row):
-                x = col_index * CELL_SIZE # pylint: disable=invalid-name
-                y = row_index * CELL_SIZE # pylint: disable=invalid-name
-                if col == "x":
-                    self.cell = Cell((x, y), 64, 64, "white")
-                    self.cells.add(self.cell)
-                elif col == "P":
-                    self.player = Player((x, y))
-                    self.player_cell.add(self.player)
-                elif col == "G":
-                    self.goal_cell = Cell((x,y), 32, 64, "blue")
-                    self.goal.add(self.goal_cell)
-                elif col == "E":
-                    self.enemy_cell = Enemy((x,y), 32, 64, "red")
-                    self.enemies.add(self.enemy_cell)
-                elif col == "B":
-                    self.blocker_cell = Cell((x,y), 64, 64, "black")
-                    self.blocker.add(self.blocker_cell)
-                elif col == "C":
-                    self.coin_cell = Cell((x,y), 24, 24, "yellow")
-                    self.coins.add(self.coin_cell)
-                elif col == "A":
-                    self.artifact_cell = Cell((x,y), 24, 24, "red")
-                    self.artifacts.add(self.artifact_cell)
+    def _sprite_creator(self, type, x, y):
+        if type == "x":
+            self.cell = Cell((x, y), 64, 64, "white")
+            self.cells.add(self.cell)
+        elif type == "G":
+            self.goal_cell = Cell((x,y), 32, 64, "blue")
+            self.goal.add(self.goal_cell)
+        elif type == "B":
+            self.blocker_cell = Cell((x,y), 64, 64, "black")
+            self.blocker.add(self.blocker_cell)
+        elif type == "C":
+            self.coin_cell = Cell((x,y), 24, 24, "yellow")
+            self.coins.add(self.coin_cell)
+        elif type == "A":
+            self.artifact_cell = Cell((x,y), 24, 24, "red")
+            self.artifacts.add(self.artifact_cell)
+
+    def _collect_sprites_to_all_sprites(self):
         self.all_sprites.add(
             self.blocker,
             self.coins,
@@ -56,6 +49,23 @@ class Level:
             self.goal,
             self.enemies
         )
+
+    def setup(self):
+        for row_index, row in enumerate(self.level_map):
+            for col_index, col in enumerate(row):
+                x = col_index * CELL_SIZE # pylint: disable=invalid-name
+                y = row_index * CELL_SIZE # pylint: disable=invalid-name
+                if col == " ":
+                    continue
+                elif col == "P":
+                    self.player = Player((x, y))
+                    self.player_cell.add(self.player)
+                elif col == "E":
+                    self.enemy_cell = Enemy((x,y), 32, 64, "red")
+                    self.enemies.add(self.enemy_cell)
+                else:
+                    self._sprite_creator(col, x, y)
+        self._collect_sprites_to_all_sprites()
 
     def camera(self):
         x = self.player.get_player_x() # pylint: disable=invalid-name
