@@ -32,6 +32,10 @@ class UI:
         self.time_attack = False
 
     def check_levels_file(self):
+        """Calls support function to read levels.txt file and set the return 
+        statement which is a list of levels in level_maps variable.
+        """
+
         self.level_maps = level_file_reader()
 
     def create_window(self):
@@ -93,7 +97,7 @@ class UI:
         display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
         clock = Clock()
-        level = Level(level_map)
+        level = Level(level_map, self.time_attack)
         renderer = Renderer(display, level, self.time_attack)
         event_handling = EventHandling()
         game = Game(level, clock, event_handling, renderer)
