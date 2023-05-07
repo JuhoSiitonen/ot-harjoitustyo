@@ -1,3 +1,4 @@
+import time
 import pygame
 from sprites.cells import Cell
 from sprites.player import Player
@@ -11,6 +12,8 @@ class Level:
         self.setup()
         self.camera_shift = 0
         self.time_attack = time_attack
+        self.start = time.time()
+        self.counter = 1
 
     def initialize_sprite_groups(self):
         self.cells = pygame.sprite.Group()
@@ -118,6 +121,8 @@ class Level:
         player = self.player_cell.sprite
         if self.goal_cell.rect.colliderect(player.rect):
             return True
+        elif self.counter < 0.01:
+            return True
         return False
 
     def player_demise(self):
@@ -136,7 +141,16 @@ class Level:
                     enemy.direction *= -1
             enemy.update((enemy.speed*enemy.direction))
 
+    def time_counter(self):
+        """If time attack mode is chosen this method calculates time left from the
+        starting timestamp self.start.
+        """
+
+        if self.time_attack:
+            self.counter = round((15.0 - (time.time() - self.start)), 2)
+
     def update(self):
+        self.time_counter()
         self.player.move()
         self.horizontal_collision()
         self.player.apply_gravity()

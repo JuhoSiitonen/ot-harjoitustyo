@@ -74,9 +74,7 @@ class Game:
 
         running = True
         while running:
-            if not self.handle_events() or self.renderer.timeout:
-                running = False
-            if self.level.level_completion() is True:
+            if not self.handle_events() or self.level.level_completion():
                 running = False
             if self.level.player_demise() is True:
                 self.level.initialize_sprite_groups()

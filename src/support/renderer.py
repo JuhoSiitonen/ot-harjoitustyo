@@ -1,4 +1,3 @@
-import time
 import pygame
 
 class Renderer:
@@ -9,7 +8,6 @@ class Renderer:
         display: The surface which pygame is rendered on.
         level: Level object which initializes the sprites and handles their interactions.
         time_attack: Boolean to tell if time attack mode is chosen. 
-        start: Starting timestamp for time attack mode. 
     """
 
     def __init__(self, display, level, time_attack):
@@ -22,14 +20,11 @@ class Renderer:
             level (object): Level object which initializes the sprites and handles 
             their interactions.
             time_attack (bool): Boolean to tell if time attack mode is chosen. 
-            timeout (bool): Boolean to tell if time has run out.
         """
 
         self.display = display
         self.level = level
         self.time_attack = time_attack
-        self.timeout = False
-        self.start = time.time()
 
     def counter_text(self, count, color, placement):
         """Method which uses blit to draw text to the pygame window. 
@@ -46,16 +41,12 @@ class Renderer:
         self.display.blit(counter, placement)
 
     def time_counter(self):
-        """If time attack mode is chosen this method calculates time left from the
-        starting timestamp self.start and calls counter_text method to draw time left
+        """If time attack mode is chosen calls counter_text method to draw time left
         on pygame window.
         """
 
         if self.time_attack:
-            counter = round((15.0 - (time.time() - self.start)), 2)
-            self.counter_text(counter, "white", (100, 25))
-            if counter < 0.01:
-                self.timeout = True
+            self.counter_text(self.level.counter, "white", (100, 25))
 
     def render(self):
         """Method to fill pygame display surface with a black color first, then 
