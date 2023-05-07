@@ -7,7 +7,7 @@ from logic.game import Game
 from support.renderer import Renderer
 from support.event_handling import EventHandling
 from support.clock import Clock
-from support.helper_functions import level_file_reader
+from support.helper_functions import level_file_reader, highscore_list_reader
 from settings import DISPLAY_HEIGHT, DISPLAY_WIDTH
 
 class UI:
@@ -30,6 +30,7 @@ class UI:
         self.check_levels_file()
         self.create_window()
         self.time_attack = False
+        self.window2_active = False
 
     def check_levels_file(self):
         """Calls support function to read levels.txt file and set the return 
@@ -37,6 +38,9 @@ class UI:
         """
 
         self.level_maps = level_file_reader()
+
+    def check_highscores_file(self):
+        self.highscores = highscore_list_reader
 
     def create_window(self):
         """Creates the PySimpleGUI window with a layout of buttons with a selected color 
@@ -48,10 +52,12 @@ class UI:
         lvls = len(self.level_maps)
         header = [[sg.Text("Select level")]]
         lvl_buttons = [[sg.Button(f"Level {i}") for i in range(1, lvls+1)]]
-        end_buttons = [[sg.Button("Time Attack", 
-            button_color = (None, "grey")), sg.Button("Exit")]]
-        self.layout = header + lvl_buttons + end_buttons
-        self.window = sg.Window("Jumpman", self.layout)
+        end_buttons = [
+            [sg.Button("Time Attack", button_color = (None, "grey")), 
+            sg.Button("Highscores"),
+            sg.Button("Exit")]]
+        layout = header + lvl_buttons + end_buttons
+        self.window = sg.Window("Jumpman", layout)
 
     def check_time_attack(self):
         """Checks if Time Attack button has been pressed, if so changes the boolean 
@@ -65,6 +71,13 @@ class UI:
         else:
             self.time_attack = False
             self.window["Time Attack"].update(button_color = (None, "grey"))
+
+    def highscore_window(self):
+        sg.set_options(font = "Franklin 20")
+        header = [[sg.Text("Best times per level")]]
+        end_buttons = [[sg.Button("Exit")]]
+        layout = header + end_buttons
+        self.window2 = sg.Window("Jumpman Highscores", layout)
 
     def run(self):
         """Method to run a loop to read window events such as mouse clicks on the 
@@ -83,6 +96,15 @@ class UI:
                 if event == f"Level {i}":
                     pygame_thread = threading.Thread(target=self.run_game(self.level_maps[i-1]))
                     pygame_thread.start()
+
+            if event == "Highscores" and not self.window2_active:
+                self.window2_active = True
+                self.highscore_window()
+            if self.window2_active:
+                event2, values2 = self.window2.read()
+                if event2 == sg.WIN_CLOSED or event2 == 'Exit':
+                    self.window2_active = False
+                    self.window2.close()
         pygame_thread.join()
 
     def run_game(self, level_map):
