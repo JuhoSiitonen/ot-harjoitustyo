@@ -1,4 +1,5 @@
 import pygame
+from support.helper_functions import highscore_list_checker
 
 class Game:
     """Class to handle Pygame loop by checking events, inputs and updating the 
@@ -15,7 +16,7 @@ class Game:
         and text.
     """
 
-    def __init__(self, level, clock, event_handling, renderer):
+    def __init__(self, level, clock, event_handling, renderer, level_number):
         """Constructor for the class, connects the injected dependencies to this 
         instance of game class.
 
@@ -28,6 +29,7 @@ class Game:
             renderer (object): Renderer object which handles rendering the Pygame screen 
             with sprites and text.
         """
+        self.level_number = level_number
         self.level = level
         self.clock = clock
         self.event_handling = event_handling
@@ -74,7 +76,11 @@ class Game:
 
         running = True
         while running:
-            if not self.handle_events() or self.level.level_completion():
+            if not self.handle_events():
+                running = False
+            if self.level.level_completion():
+                if self.level.time_attack:
+                    highscore_list_checker(self.level_number,self.level.counter)
                 running = False
             if self.level.player_demise() is True:
                 self.level.initialize_sprite_groups()

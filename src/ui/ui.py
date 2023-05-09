@@ -40,7 +40,11 @@ class UI:
         self.level_maps = level_file_reader()
 
     def check_highscores_file(self):
-        self.highscores = highscore_list_reader
+        """Calls support function to read highscores.txt file and gets a list 
+        as a return statement which has 3 best times per level.
+        """
+
+        self.highscores = highscore_list_reader()
 
     def create_window(self):
         """Creates the PySimpleGUI window with a layout of buttons with a selected color 
@@ -73,10 +77,20 @@ class UI:
             self.window["Time Attack"].update(button_color = (None, "grey"))
 
     def highscore_window(self):
-        sg.set_options(font = "Franklin 20")
+        """Creates a PysimpleGUI window for showing 3 highscores per
+        level, the highscores come from helper function as a list and 
+        for loops are used to make rows to PySimpleGUI window.
+        """
+
+        self.check_highscores_file()
         header = [[sg.Text("Best times per level")]]
+        scores = []
+        if self.highscores:
+            for i in range(1,len(self.level_maps)+1):
+                for j in range(1,4):
+                    scores += [sg.Text(f"Level {i} score {j}: {self.highscores[i*j-1]}")]
         end_buttons = [[sg.Button("Exit")]]
-        layout = header + end_buttons
+        layout = header + scores + end_buttons
         self.window2 = sg.Window("Jumpman Highscores", layout)
 
     def run(self):
@@ -94,7 +108,7 @@ class UI:
                 self.check_time_attack()
             for i in range (1, len(self.level_maps)+1):
                 if event == f"Level {i}":
-                    pygame_thread = threading.Thread(target=self.run_game(self.level_maps[i-1]))
+                    pygame_thread = threading.Thread(target=self.run_game(self.level_maps[i-1], i))
                     pygame_thread.start()
 
             if event == "Highscores" and not self.window2_active:
@@ -107,7 +121,7 @@ class UI:
                     self.window2.close()
         pygame_thread.join()
 
-    def run_game(self, level_map):
+    def run_game(self, level_map, level_number):
         """Method initializes the depencies which need to be injected to instantiate
         a game class object and then sets Pygame window caption and initializes a 
         Pygame window. 
@@ -122,7 +136,7 @@ class UI:
         level = Level(level_map, self.time_attack)
         renderer = Renderer(display, level, self.time_attack)
         event_handling = EventHandling()
-        game = Game(level, clock, event_handling, renderer)
+        game = Game(level, clock, event_handling, renderer, level_number)
 
         pygame.display.set_caption("Jumpman")
         pygame.init()
