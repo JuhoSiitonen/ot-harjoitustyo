@@ -38,3 +38,10 @@
 - Lisätty nappi Time Attack pysimplegui käyttöliittymään, jonka avulla voi valita eri pelimoodin jossa läpäisyaika on rajallinen.
 - Time attack moodi valittuna lisätty vasempaan yläkulmaan ajastin joka näkyy pelatessa.
 - Docstring dokumentaatio lisätty. 
+
+## Viikko 7
+
+- Lisätty data kansio projektiin jonka sisältönä on levels.txt, tekstitiedosto josta luetaan pelin kentät. 
+- Päivitetty ui.py moduulin koodi jotta se lukee kentät tästä tiedostosta uuden helper_functions moduulin avulla joka sisältää tiedostojen lukemiseen ja kirjoittamiseen vaaditut funktiot. 
+- Koodin refaktorointia, Render luokasta siirretty ajastimen logiikka Level moduuliin, Level moduulin setup funktiota kevennetty. 
+- Highscore ikkunan esittäminen käyttöliittymässä pysimplegui ikkunana ja tämän vaatimat muutokset UI luokkaan, sekä oma apu funktio highscore tiedoston lukemiseksi ja kirjoittamiseksi.

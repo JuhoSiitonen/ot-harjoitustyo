@@ -46,3 +46,11 @@
 
 - Viikon totaali : 9h
 
+## Viikko 7
+
+- Torstai 4.5 2h (tiedostojen lukemiseen tarkoitetun funktion teko ja testaus, ui.py moduulin päivitys jotta pelin kentät luetaan tekstitiedostosta)
+- Perjantai 5.5 1h (PysimpleGUI ikkunan level painikkeiden parametrisointi)
+- Sunnuntai 7.5 3h (Highscore ikkunan luominen, koodin refaktorointi)
+- Maanantai 8.5 1h (Highscore tiedoston luku ja kirjoitus)
+- Tiistai 9.5 1h (Highscore tiedoston luku ja kirjoitus)
+
