@@ -2,12 +2,14 @@ import threading
 import sys
 import PySimpleGUI as sg
 import pygame
+from database_connection import get_db_connection
 from logic.level import Level
 from logic.game import Game
 from support.renderer import Renderer
 from support.event_handling import EventHandling
 from support.clock import Clock
 from support.helper_functions import level_file_reader, highscore_list_reader
+from repositories.highscore_repository import HighscoreRepository
 from settings import DISPLAY_HEIGHT, DISPLAY_WIDTH
 
 class UI:
@@ -28,6 +30,8 @@ class UI:
         """
 
         self.check_levels_file()
+        self.db = get_db_connection()
+        self.highscore_repository = HighscoreRepository(self.db)
         self.create_window()
         self.time_attack = False
         self.window2_active = False
@@ -44,7 +48,7 @@ class UI:
         as a return statement which has 3 best times per level.
         """
 
-        self.highscores = highscore_list_reader()
+        self.highscores = self.highscore_repository.highscores_list()
 
     def create_window(self):
         """Creates the PySimpleGUI window with a layout of buttons with a selected color 
@@ -86,9 +90,8 @@ class UI:
         header = [[sg.Text("Best times per level")]]
         scores = []
         if self.highscores:
-            for i in range(1,len(self.level_maps)+1):
-                for j in range(1,4):
-                    scores += [sg.Text(f"Level {i} score {j}: {self.highscores[i*j-1]}")]
+            for line in self.highscores:
+                scores += [[sg.Text(f"Level {line[0]} time: {line[1]}")]]
         end_buttons = [[sg.Button("Exit")]]
         layout = header + scores + end_buttons
         self.window2 = sg.Window("Jumpman Highscores", layout)
@@ -136,7 +139,7 @@ class UI:
         level = Level(level_map, self.time_attack)
         renderer = Renderer(display, level, self.time_attack)
         event_handling = EventHandling()
-        game = Game(level, clock, event_handling, renderer, level_number)
+        game = Game(level, clock, event_handling, renderer, level_number, self.highscore_repository)
 
         pygame.display.set_caption("Jumpman")
         pygame.init()

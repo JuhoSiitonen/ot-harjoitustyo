@@ -1,23 +1,16 @@
-level_map_1 = ['                        ',
-             '                        ',
-             '                        ',
-             'xxx               B E  B',
-             'xxx      P G       xxxxx',
-             '       xxxxx      xxxxxx',
-             'A C    xxxxx     xxx    ',
-             'xxxxx        B  E   B   ',
-             'xxxxxxxx      xxxxxx    ']
+import os
+from dotenv import load_dotenv
 
-level_map_2 = ['                                       ',
-             '                                       ',
-             ' A                                    G',
-             'xxxxxxx                          xxxxxx',
-             '            B    E   B        xx       ',
-             '             xxxxxxxx     B   E   B    ',
-             '                           xxxxxxx     ',
-             ' P         B  E C  B                   ',
-             'xxxxxxxx    xxxxxxx    xxx             ']
+dirname = os.path.dirname(__file__)
+
+try:
+    load_dotenv(dotenv_path=os.path.join(dirname, "..", ".env"))
+except FileNotFoundError:
+    pass
+
+DATABASE_FILENAME = os.getenv("DATABASE_FILENAME") or "database.sqlite"
+DATABASE_FILE_PATH = os.path.join(dirname, "data", DATABASE_FILENAME)
 
 CELL_SIZE = 64
-DISPLAY_HEIGHT = CELL_SIZE * len(level_map_1)
+DISPLAY_HEIGHT = CELL_SIZE * 9
 DISPLAY_WIDTH = 1200
