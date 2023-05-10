@@ -1,5 +1,5 @@
 import pygame
-from support.helper_functions import highscore_list_checker
+from database_connection import get_db_connection
 
 class Game:
     """Class to handle Pygame loop by checking events, inputs and updating the 
@@ -16,7 +16,7 @@ class Game:
         and text.
     """
 
-    def __init__(self, level, clock, event_handling, renderer, level_number):
+    def __init__(self, level, clock, event_handling, renderer, level_number, hs_rep):
         """Constructor for the class, connects the injected dependencies to this 
         instance of game class.
 
@@ -34,6 +34,7 @@ class Game:
         self.clock = clock
         self.event_handling = event_handling
         self.renderer = renderer
+        self.highscore_repository = hs_rep
 
     def handle_events(self):
         """Method to handle Pygame events by calling the event_handling object.
@@ -80,7 +81,7 @@ class Game:
                 running = False
             if self.level.level_completion():
                 if self.level.time_attack:
-                    highscore_list_checker(self.level_number,self.level.counter)
+                    self.write_highscore_to_db(self.level_number,self.level.counter)
                 running = False
             if self.level.player_demise() is True:
                 self.level.initialize_sprite_groups()
@@ -96,3 +97,9 @@ class Game:
         """
 
         self.renderer.render()
+
+    def write_highscore_to_db(self, level_number, counter):
+        db = get_db_connection()
+        self.highscore_repository.insert_into_highscores(level_number,counter)
+
+
