@@ -3,6 +3,10 @@ import pygame
 from logic.level import Level
 from logic.game import Game
 
+class StubDB:
+    def insert_into_highscores(level_number, counter):
+        pass
+
 class StubClock:
     def tick(self):
         pass
@@ -52,9 +56,9 @@ level_map = ['00000000000000000000',
 
 class TestGameLoop(unittest.TestCase):
     def setUp(self):
-        self.level = Level(level_map)
+        self.level = Level(level_map, False)
+        self.level_number = 1
 
-    
     def test_game_can_complete_level(self):
         pressed = StubKey_press(pygame.K_RIGHT).get()
         events = [
@@ -64,7 +68,9 @@ class TestGameLoop(unittest.TestCase):
             self.level,
             StubClock(),
             StubEvent_handling(events, pressed),
-            StubRenderer()
+            StubRenderer(),
+            self.level_number,
+            StubDB()
         )
         game.start()
         self.assertEqual(self.level.level_completion(), True)
@@ -78,7 +84,9 @@ class TestGameLoop(unittest.TestCase):
             self.level,
             StubClock(),
             StubEvent_handling(events, pressed),
-            StubRenderer()
+            StubRenderer(),
+            self.level_number,
+            StubDB()
         )
         game.start()
         self.assertEqual(game.handle_events(), False)
@@ -92,7 +100,9 @@ class TestGameLoop(unittest.TestCase):
             self.level,
             StubClock(),
             StubEvent_handling(events, pressed),
-            StubRenderer()
+            StubRenderer(),
+            self.level_number,
+            StubDB()
         )   
         game.start()
         player = self.level.player_cell.sprite

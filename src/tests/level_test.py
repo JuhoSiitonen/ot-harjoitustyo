@@ -16,7 +16,7 @@ CELL_SIZE = 64
 
 class TestLevel(unittest.TestCase):
     def setUp(self):
-        self.level = Level(level_map)
+        self.level = Level(level_map, False)
 
     def test_camera_center(self):
         self.level.camera()
