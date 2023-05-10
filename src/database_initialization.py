@@ -4,34 +4,34 @@ def initialize_db():
     """Initializes the database and creates highscore table.
     """
 
-    db = get_db_connection()
-    drop_tables(db)
-    create_hs_table(db)
+    DB = get_db_connection()
+    drop_tables(DB)
+    create_hs_table(DB)
 
-def create_hs_table(db):
+def create_hs_table(DB):
     """Method to create highscore table with two rows, level number and 
     completion time.
     """
 
-    cursor = db.cursor()
+    cursor = DB.cursor()
     cursor.execute("""
         create table highscores (
             level int,
             time float
         );
     """)
-    db.commit()
+    DB.commit()
 
-def drop_tables(db):
+def drop_tables(DB):
     """Method to drop existing table if re initialized.
     """
 
-    cursor = db.cursor()
+    cursor = DB.cursor()
     cursor.execute("""
         drop table if exists highscores;
     """)
 
-    db.commit()
+    DB.commit()
 
 if __name__ == "__main__":
     initialize_db()

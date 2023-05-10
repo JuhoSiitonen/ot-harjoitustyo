@@ -41,7 +41,7 @@ class Level:
         self.artifacts = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
-    def _sprite_creator(self, type, x, y):
+    def _sprite_creator(self, type, X, Y):
         """Instantiates sprites which belong to Cell class.
 
         Args:
@@ -51,19 +51,19 @@ class Level:
         """
 
         if type == "x":
-            self.cell = Cell((x, y), 64, 64, "white")
+            self.cell = Cell((X, Y), 64, 64, "white")
             self.cells.add(self.cell)
         elif type == "G":
-            self.goal_cell = Cell((x,y), 32, 64, "blue")
+            self.goal_cell = Cell((X,Y), 32, 64, "blue")
             self.goal.add(self.goal_cell)
         elif type == "B":
-            self.blocker_cell = Cell((x,y), 64, 64, "black")
+            self.blocker_cell = Cell((X,Y), 64, 64, "black")
             self.blocker.add(self.blocker_cell)
         elif type == "C":
-            self.coin_cell = Cell((x,y), 24, 24, "yellow")
+            self.coin_cell = Cell((X,Y), 24, 24, "yellow")
             self.coins.add(self.coin_cell)
         elif type == "A":
-            self.artifact_cell = Cell((x,y), 24, 24, "red")
+            self.artifact_cell = Cell((X,Y), 24, 24, "red")
             self.artifacts.add(self.artifact_cell)
 
     def _collect_sprites_to_all_sprites(self):
@@ -88,18 +88,18 @@ class Level:
 
         for row_index, row in enumerate(self.level_map):
             for col_index, col in enumerate(row):
-                x = col_index * CELL_SIZE # pylint: disable=invalid-name
-                y = row_index * CELL_SIZE # pylint: disable=invalid-name
+                X = col_index * CELL_SIZE # pylint: disable=invalid-name
+                Y = row_index * CELL_SIZE # pylint: disable=invalid-name
                 if col == " ":
                     continue
-                elif col == "P":
-                    self.player = Player((x, y))
+                if col == "P":
+                    self.player = Player((X, Y))
                     self.player_cell.add(self.player)
                 elif col == "E":
-                    self.enemy_cell = Enemy((x,y), 32, 64, "red")
+                    self.enemy_cell = Enemy((X,Y), 32, 64, "red")
                     self.enemies.add(self.enemy_cell)
                 else:
-                    self._sprite_creator(col, x, y)
+                    self._sprite_creator(col, X, Y)
         self._collect_sprites_to_all_sprites()
 
     def camera(self):
@@ -179,7 +179,7 @@ class Level:
         player = self.player_cell.sprite
         if self.goal_cell.rect.colliderect(player.rect):
             return True
-        elif self.counter < 0.01:
+        if self.counter < 0.01:
             return True
         return False
 
@@ -223,7 +223,7 @@ class Level:
         """Method to call other methods from level class and also player class
         to check all collisions, update timer, and move player.
         """
-        
+
         self.time_counter()
         self.player.move()
         self.horizontal_collision()

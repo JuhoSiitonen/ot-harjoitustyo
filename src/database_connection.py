@@ -11,5 +11,5 @@ def get_db_connection():
     Returns:
         db (object): Database connection object.
     """
-    
+
     return db

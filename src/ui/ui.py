@@ -33,8 +33,8 @@ class UI:
         """
 
         self.check_levels_file()
-        self.db = get_db_connection()
-        self.highscore_repository = HighscoreRepository(self.db)
+        self.DB = get_db_connection()
+        self.highscore_repository = HighscoreRepository(self.DB)
         self.create_window()
         self.time_attack = False
         self.window2_active = False
@@ -65,7 +65,7 @@ class UI:
         header = [[sg.Text("Select level")]]
         lvl_buttons = [[sg.Button(f"Level {i}") for i in range(1, lvls+1)]]
         end_buttons = [
-            [sg.Button("Time Attack", button_color = (None, "grey")), 
+            [sg.Button("Time Attack", button_color = (None, "grey")),
             sg.Button("Highscores"),
             sg.Button("Exit")]]
         layout = header + lvl_buttons + end_buttons
@@ -124,8 +124,8 @@ class UI:
                 self.window2_active = True
                 self.highscore_window()
             if self.window2_active:
-                event2, values2 = self.window2.read()
-                if event2 == sg.WIN_CLOSED or event2 == 'Exit':
+                event2, values2 = self.window2.read() # pylint: disable=unused-variable
+                if event2 in (sg.WIN_CLOSED, 'Exit'):
                     self.window2_active = False
                     self.window2.close()
         pygame_thread.join()

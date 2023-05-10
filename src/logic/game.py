@@ -113,8 +113,5 @@ class Game:
             level_number (int): Integer to tell which level was completed.
             counter (float): Time left in counter after level completion.
         """
-        
-        db = get_db_connection()
-        self.highscore_repository.insert_into_highscores(level_number,counter)
-
-
+        time = round(15 - counter, 2)
+        self.highscore_repository.insert_into_highscores(level_number,time)
