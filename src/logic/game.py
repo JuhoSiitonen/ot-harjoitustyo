@@ -14,6 +14,9 @@ class Game:
         to this class.
         renderer: Renderer object which handles rendering the Pygame screen with sprites
         and text.
+        level_number: Integer to help call highscore database insertion after time attack 
+        level completion.
+        hs_rep: Highscore_Repository object to interact with highscore database.
     """
 
     def __init__(self, level, clock, event_handling, renderer, level_number, hs_rep):
@@ -28,7 +31,11 @@ class Game:
             inputs to this class.
             renderer (object): Renderer object which handles rendering the Pygame screen 
             with sprites and text.
+            level_number (int): Integer to help call highscore database insertion after time attack 
+            level completion.
+            hs_rep (object): Highscore_Repository object to interact with highscore database.
         """
+
         self.level_number = level_number
         self.level = level
         self.clock = clock
@@ -99,6 +106,14 @@ class Game:
         self.renderer.render()
 
     def write_highscore_to_db(self, level_number, counter):
+        """Method to call database repository object for insertion into
+        the highscore database.
+
+        Args:
+            level_number (int): Integer to tell which level was completed.
+            counter (float): Time left in counter after level completion.
+        """
+        
         db = get_db_connection()
         self.highscore_repository.insert_into_highscores(level_number,counter)
 

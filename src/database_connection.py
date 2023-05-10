@@ -6,4 +6,10 @@ db.row_factory = sqlite3.Row
 
 
 def get_db_connection():
+    """Method to create database connection object to use by other modules.
+
+    Returns:
+        db (object): Database connection object.
+    """
+    
     return db

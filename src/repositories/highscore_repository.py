@@ -1,10 +1,26 @@
 from database_connection import get_db_connection
 
 class HighscoreRepository:
+    """Class to use SQLite database for handling highscore information
+    """
+
     def __init__(self, db):
+        """Class constructor, takes database connection as parameter.
+
+        Args:
+            db (Object): Database connection object.
+        """
+
         self._db = db
 
     def highscores_list(self):
+        """Method which returns the highscores database best 3 times per level as 
+        a list.
+
+        Returns:
+            rows (list): List of tuples (int, float) level number and time.
+        """
+
         cursor = self._db.cursor()
         cursor.execute("""
             select level, time 
@@ -20,6 +36,12 @@ class HighscoreRepository:
         return rows
     
     def insert_into_highscores(self, level, time):
+        """Inserts time attack mode times into database with level number.
+
+        Args:
+            level (int): Level number to distinquish level.
+            time (float): Time indicated with two decimals.
+        """
         cursor = self._db.cursor()
         cursor.execute(
             "insert into highscores (level, time) values (?, ?)",

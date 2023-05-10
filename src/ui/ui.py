@@ -8,7 +8,7 @@ from logic.game import Game
 from support.renderer import Renderer
 from support.event_handling import EventHandling
 from support.clock import Clock
-from support.helper_functions import level_file_reader, highscore_list_reader
+from support.helper_functions import level_file_reader
 from repositories.highscore_repository import HighscoreRepository
 from settings import DISPLAY_HEIGHT, DISPLAY_WIDTH
 
@@ -21,12 +21,15 @@ class UI:
             the time attack button. 
             layout: PySimpleGUI window layout, font and size
             window: Instance of the PySimpleGUI window.
+            window2: Instance of PySimpleGUI window for showcasing highscores.
     """
 
     def __init__(self):
         """Class constructor to create a PySimpleGUi UI window by first 
         reading from data folders levels text file and using that 
-        information to create buttons for the levels to the window. 
+        information to create buttons for the levels to the window. Also
+        initializes a database repository object to interact with highscore 
+        database.
         """
 
         self.check_levels_file()
@@ -44,8 +47,9 @@ class UI:
         self.level_maps = level_file_reader()
 
     def check_highscores_file(self):
-        """Calls support function to read highscores.txt file and gets a list 
-        as a return statement which has 3 best times per level.
+        """Method to call database repository method for reading highscore
+        table from database. Database repository returns a list of tuples 
+        which are set to attribute self.highscores.
         """
 
         self.highscores = self.highscore_repository.highscores_list()
@@ -82,8 +86,10 @@ class UI:
 
     def highscore_window(self):
         """Creates a PysimpleGUI window for showing 3 highscores per
-        level, the highscores come from helper function as a list and 
-        for loops are used to make rows to PySimpleGUI window.
+        level, the highscores come from a sqlite database as a list of tuples
+        and for loop is used to make rows to PySimpleGUI window. Variables header,
+        scores and end_buttons used to concatenate one single layout for PySimpleGUi 
+        window.
         """
 
         self.check_highscores_file()
@@ -100,7 +106,7 @@ class UI:
         """Method to run a loop to read window events such as mouse clicks on the 
         buttons. According to the button events method either exits the program, 
         starts Pygame with a certain level using a new thread to run it or enables 
-        the time attack mode. 
+        the time attack mode. Also created window2 as a separate window for highscores.
         """
 
         while True:
@@ -131,6 +137,7 @@ class UI:
 
         Args:
             level_map (list): Nested list with the level layout.
+            level_number (int): Integer to tell which level is played.
         """
 
         display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
