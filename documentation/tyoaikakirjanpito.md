@@ -1,11 +1,5 @@
 # Työaikakirjanpito
 
-## Viikko 1
-9h
-
-## Viikko 2 
-14h
-
 ## Viikko 3
 
 - Maanantai 27.3 1h (Luokkakaaviot)
@@ -52,5 +46,11 @@
 - Perjantai 5.5 1h (PysimpleGUI ikkunan level painikkeiden parametrisointi)
 - Sunnuntai 7.5 3h (Highscore ikkunan luominen, koodin refaktorointi)
 - Maanantai 8.5 1h (Highscore tiedoston luku ja kirjoitus)
-- Tiistai 9.5 1h (Highscore tiedoston luku ja kirjoitus)
+- Tiistai 9.5 2h (Highscore tiedoston luku ja kirjoitus, dokumentaatio)
+- Keskiviikko 10.5 4h (Highscore tiedon tallentaminen ja lukeminen tietokannasta, docstring)
+- Torstai 11.5 2h (Luokkien refaktorointia, highscore tietokannan kehittäminen, dokumentaatio)
+
+-Viikon totaali : 
+
+### Projektin totaali : 
 

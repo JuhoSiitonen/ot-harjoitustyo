@@ -21,7 +21,7 @@ Ensimmäinen ja kolmas näkymä ovat PySimpleGUI kirjastolla toteutettuja näkym
 - [x] Peli sisältää kaksi pelimoodia
 	- [x] Normaali pelimoodi jossa aikaa ei ole rajoitettu
 	- [x] Time attack moodi jossa kenttien läpäisyyn käytettävissä oleva aika on rajoitettu
-- [ ] Peli pitää kirjaa pelaajan parhaista läpäisyajoista tiedoston muodossa joka on tallennettu paikallisen koneen levylle.
+- [x] Peli pitää kirjaa pelaajan parhaista läpäisyajoista tietokannan muodossa joka on tallennettu paikallisen koneen levylle.
 
 ## Jatkokehitysideat
 
