@@ -47,3 +47,11 @@ class HighscoreRepository:
             (level , time)
         )
         self._DB.commit()
+
+    def erase_highscores(self):
+        """Method to delete highscores from database.
+        """
+
+        cursor = self._DB.cursor()
+        cursor.execute("delete from highscores")
+        self._DB.commit()
