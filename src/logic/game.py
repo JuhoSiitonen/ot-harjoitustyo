@@ -107,11 +107,14 @@ class Game:
 
     def write_highscore_to_db(self, level_number, counter):
         """Method to call database repository object for insertion into
-        the highscore database.
+        the highscore database. 15 seconds is the max completion time which is shown 
+        on the screen running down, so to insert the actual completion time to database
+        we need to do the calculation (15 - counter).
 
         Args:
             level_number (int): Integer to tell which level was completed.
             counter (float): Time left in counter after level completion.
         """
+
         time = round(15 - counter, 2)
         self.highscore_repository.insert_into_highscores(level_number,time)

@@ -180,6 +180,7 @@ class Level:
         if self.goal_cell.rect.colliderect(player.rect):
             return True
         if self.counter < 0.01:
+            self.time_attack = False
             return True
         return False
 
