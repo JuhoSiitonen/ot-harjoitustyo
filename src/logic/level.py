@@ -3,7 +3,7 @@ import pygame
 from sprites.cells import Cell
 from sprites.player import Player
 from sprites.enemy import Enemy
-from settings import DISPLAY_HEIGHT, CELL_SIZE
+from settings import CELL_SIZE
 
 class Level:
     """Class to setup sprites to screen from a level data list. Also
@@ -194,7 +194,7 @@ class Level:
         """
 
         player = self.player_cell.sprite
-        if player.rect.y > DISPLAY_HEIGHT + 100:
+        if player.rect.y > len(self.level_map) * CELL_SIZE + 100:
             return True
         for sprite in self.enemies.sprites():
             if sprite.rect.colliderect(player.rect):

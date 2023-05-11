@@ -3,6 +3,7 @@ import sys
 import PySimpleGUI as sg
 import pygame
 from database_connection import get_db_connection
+from database_initialization import initialize_db
 from logic.level import Level
 from logic.game import Game
 from support.renderer import Renderer
@@ -10,7 +11,7 @@ from support.event_handling import EventHandling
 from support.clock import Clock
 from support.helper_functions import level_file_reader
 from repositories.highscore_repository import HighscoreRepository
-from settings import DISPLAY_HEIGHT, DISPLAY_WIDTH
+from settings import CELL_SIZE, DISPLAY_WIDTH
 
 class UI:
     """Class to initialize a PySimpleGUI Ui window and subsequently open
@@ -84,7 +85,7 @@ class UI:
             self.time_attack = False
             self.window["Time Attack"].update(button_color = (None, "grey"))
 
-    def highscore_window(self):
+    def create_highscore_window(self):
         """Creates a PysimpleGUI window for showing 3 highscores per
         level, the highscores come from a sqlite database as a list of tuples
         and for loop is used to make rows to PySimpleGUI window. Variables header,
@@ -98,37 +99,61 @@ class UI:
         if self.highscores:
             for line in self.highscores:
                 scores += [[sg.Text(f"Level {line[0]} time: {line[1]}")]]
-        end_buttons = [[sg.Button("Exit")]]
+        end_buttons = [[sg.Button("Erase scores"), sg.Button("Exit")]]
         layout = header + scores + end_buttons
         self.window2 = sg.Window("Jumpman Highscores", layout)
 
+    def run_highscore_window(self):
+        """Method to check PySimpleGUI events on the highscore window, all events 
+        end up closing the window, but erase scores will also delete rows from database.
+        """
+
+        event2, __ = self.window2.read() # pylint: disable=unused-variable
+        if event2 in (sg.WIN_CLOSED, "Exit", "Erase scores"):
+            self.window2_active = False
+            if event2 == "Erase scores":
+                self.highscore_repository.erase_highscores()
+            self.window2.close()
+
+    def main_menu_window_events(self, event):
+        """Method to handle main menu button events. Time attack changes the time
+        attack bool value to True, buttons for the levels found in levels.txt file
+        are checked with a for loop and they begin a new Thread to handle a Pygame 
+        window. This is necessary to handle closing Pygame in a way that PySimpleGUI 
+        won't shutdown. Highscore button changes window2 to be active and the Run method
+        loop will call the run_highscore_window method (after the create highscore window
+        function call).
+
+        Args:
+            event (str): Str which is the key value of the buttons on the PySimpleGUI
+            window. 
+        """
+
+        if event in (sg.WIN_CLOSED, "Exit"):
+                sys.exit()
+        if event == "Time Attack":
+            self.check_time_attack()
+        for i in range (1, len(self.level_maps)+1):
+            if event == f"Level {i}":
+                pygame_thread = threading.Thread(target=self.run_game(self.level_maps[i-1], i))
+                pygame_thread.start()
+        if event == "Highscores" and not self.window2_active:
+            self.window2_active = True
+            self.create_highscore_window()
+
     def run(self):
         """Method to run a loop to read window events such as mouse clicks on the 
-        buttons. According to the button events method either exits the program, 
-        starts Pygame with a certain level using a new thread to run it or enables 
-        the time attack mode. Also created window2 as a separate window for highscores.
+        buttons. According to the button events either main menu window events 
+        method is checked or if the highscore button is pressed a new PySimpleGUI
+        window is opened and run highscore window method will check its events.
         """
 
         while True:
-            event, values = self.window.read() # pylint: disable=unused-variable
-            if event in (sg.WIN_CLOSED, "Exit"):
-                sys.exit()
-            if event == "Time Attack":
-                self.check_time_attack()
-            for i in range (1, len(self.level_maps)+1):
-                if event == f"Level {i}":
-                    pygame_thread = threading.Thread(target=self.run_game(self.level_maps[i-1], i))
-                    pygame_thread.start()
-
-            if event == "Highscores" and not self.window2_active:
-                self.window2_active = True
-                self.highscore_window()
+            event, _ = self.window.read() # pylint: disable=unused-variable
+            self.main_menu_window_events(event)
             if self.window2_active:
-                event2, values2 = self.window2.read() # pylint: disable=unused-variable
-                if event2 in (sg.WIN_CLOSED, 'Exit'):
-                    self.window2_active = False
-                    self.window2.close()
-        pygame_thread.join()
+                self.run_highscore_window()
+
 
     def run_game(self, level_map, level_number):
         """Method initializes the depencies which need to be injected to instantiate
@@ -139,7 +164,7 @@ class UI:
             level_map (list): Nested list with the level layout.
             level_number (int): Integer to tell which level is played.
         """
-
+        DISPLAY_HEIGHT = len(self.level_maps[level_number-1]) * CELL_SIZE
         display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
         clock = Clock()
