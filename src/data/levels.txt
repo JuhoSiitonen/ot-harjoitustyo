@@ -18,3 +18,14 @@ xxxxxxx                          xxxxxx
  P         B  E C  B                   
 xxxxxxxx    xxxxxxx    xxx             
 -
+                                                                                      xxxx 
+                                                                                         G 
+                          xxxxxxxxxxxxx      xxxxx                                         
+                         B       E     B       C                                  xxx      
+              A       B    E    B                                                     xxxx
+       C   xxxx   xxx  xxxxxxxxx         xxxxx    xxxxx                            XXX     
+      xxxx                                                 B   E     B     E  B  xxx       
+                                               B   CE B     xxxxxxxxxxxxxxxxxx             
+  P                                             xxxxxx                                     
+xxxxxx                                                                                     
+-
