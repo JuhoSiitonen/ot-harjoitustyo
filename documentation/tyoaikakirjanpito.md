@@ -49,6 +49,8 @@
 - Tiistai 9.5 2h (Highscore tiedoston luku ja kirjoitus, dokumentaatio)
 - Keskiviikko 10.5 4h (Highscore tiedon tallentaminen ja lukeminen tietokannasta, docstring)
 - Torstai 11.5 2h (Luokkien refaktorointia, highscore tietokannan kehittäminen, dokumentaatio)
+- Perjantai 12.5 2h (Luokkien refaktorointia, level luokan vastuiden pienentäminen uudella SpriteHandler luokalla joka luo sprite ryhmät, initialisoi sprite luokat kuten cells, player ja enemy. Lisää Docstringiä ja dokumentaatiota)
+
 
 -Viikon totaali : 
 
