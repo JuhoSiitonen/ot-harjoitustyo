@@ -58,10 +58,10 @@ class Renderer:
         """
 
         self.display.fill("black")
-        self.level.all_sprites.update(self.level.camera_shift)
-        self.level.all_sprites.draw(self.display)
-        self.counter_text(self.level.player.coins, "yellow", (1100, 25))
-        self.counter_text(self.level.player.artifacts, "red", (1100, 70))
+        self.level.sprites.all_sprites.update(self.level.camera_shift)
+        self.level.sprites.all_sprites.draw(self.display)
+        self.counter_text(self.level.sprites.player.coins, "yellow", (1100, 25))
+        self.counter_text(self.level.sprites.player.artifacts, "red", (1100, 70))
         self.time_counter()
         pygame.display.update()
         self.level.camera()
