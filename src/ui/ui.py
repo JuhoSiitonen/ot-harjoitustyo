@@ -3,7 +3,6 @@ import sys
 import PySimpleGUI as sg
 import pygame
 from database_connection import get_db_connection
-from database_initialization import initialize_db
 from logic.level import Level
 from logic.game import Game
 from support.renderer import Renderer
@@ -19,10 +18,17 @@ class UI:
 
         Attributes:
             time_attack: Tells if user selected the time attack mode by clicking 
-            the time attack button. 
+                the time attack button. 
             layout: PySimpleGUI window layout, font and size
+            level_map: Nested list with level data, used to determine how many levels
+                are in the game, and thus have the buttons for opening them.
+            highscores: List of tuples, highscores in order of level and by completion time.
             window: Instance of the PySimpleGUI window.
             window2: Instance of PySimpleGUI window for showcasing highscores.
+            window2_active = Bool value, if true run loop will run code to display
+                highscore window.
+            DB = Database connection object.
+            highscore_repository: Object to handle database operations regarding highscores.
     """
 
     def __init__(self):
@@ -130,7 +136,7 @@ class UI:
         """
 
         if event in (sg.WIN_CLOSED, "Exit"):
-                sys.exit()
+            sys.exit()
         if event == "Time Attack":
             self.check_time_attack()
         for i in range (1, len(self.level_maps)+1):

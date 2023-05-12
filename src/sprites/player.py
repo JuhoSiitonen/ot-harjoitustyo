@@ -5,7 +5,18 @@ class Player(pygame.sprite.Sprite):
     """Class to handle player sprite, has all the player movement methods.
 
     Args:
-        pygame (object): Sprite object
+        pygame (object): Sprite class which this class inherits from
+
+    Attributes:
+        image: Sprite surface which sprite is captured in.
+        rect: Rectangle around sprite to handle its collisions and movements.
+        direction: A simple integer to control sprite movement direction.
+        speed: Integer value for player sprite movement speed.
+        gravity: Float value to simulate gravity on plaeyer.
+        jump_speed: Integer value which affects the Y axis movement speed
+            of the player sprite.
+        coins: Counter for coin sprites collided with.
+        artifacts: Counter for artifact sprites collided with.
     """
 
     def __init__(self, pos):

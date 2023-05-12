@@ -1,5 +1,4 @@
 import pygame
-from database_connection import get_db_connection
 
 class Game:
     """Class to handle Pygame loop by checking events, inputs and updating the 
@@ -91,7 +90,6 @@ class Game:
                     self.write_highscore_to_db(self.level_number,self.level.counter)
                 running = False
             if self.level.player_demise() is True:
-                #self.level.initialize_sprite_groups()
                 self.level.re_initialize()
                 self.level.setup()
             self.handle_inputs()

@@ -77,7 +77,7 @@ class SpriteHandler:
             X (int): X axis coordinate for cell topleft corner
             Y (int): Y axis coordinate for cell topleft corner
         """
-        
+
         self.enemy_cell = Enemy((X,Y), 32, 64, "red")
         self.enemies.add(self.enemy_cell)
 

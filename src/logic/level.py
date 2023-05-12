@@ -1,11 +1,21 @@
 import time
-import pygame
 from sprites.sprite_handler import SpriteHandler
 from settings import CELL_SIZE
 
 class Level:
     """Class to setup sprites to screen from a level data list. Also
     handles collision checks and the rolling camera. 
+
+    Attributes:
+        sprites: SpriteHandler object to initialize sprites.
+        level_map: Nested list with level information, which is used
+            to create level with setup method.
+        camera_shift: Integer value for "camera" movement speed, actually 
+            the display doesn't move, all the sprites move instead. 
+        time_attack: Boolean value to know if timer needs to be calculated and
+            upon level completion sent to highscore database.
+        start: Timestamp of when the level begins.
+        counter: Time counter for time attack mode.
     """
 
     def __init__(self, level_map, time_attack):
@@ -44,7 +54,7 @@ class Level:
                 else:
                     self.sprites.sprite_creator(col, X, Y)
         self.sprites.collect_sprites_to_all_sprites()
-    
+
     def re_initialize(self):
         """Method to re initialize level sprites to their original positions, and thus return 
         to the beginning of the level. Used in case player sprite collides with enemy, or falls

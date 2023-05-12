@@ -1,6 +1,9 @@
 
 class HighscoreRepository:
     """Class to use SQLite database for handling highscore information
+
+    Attirbutes:
+        _DB : Database connection object holder.
     """
 
     def __init__(self, DB):
