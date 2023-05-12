@@ -64,13 +64,13 @@ class Game:
 
         inputs = self.event_handling.get_pressed()
         if inputs[pygame.K_RIGHT]:
-            self.level.player.direction.x = 1
+            self.level.sprites.player.direction.x = 1
         elif inputs[pygame.K_LEFT]:
-            self.level.player.direction.x = -1
+            self.level.sprites.player.direction.x = -1
         else:
-            self.level.player.direction.x = 0
+            self.level.sprites.player.direction.x = 0
         if inputs[pygame.K_SPACE]:
-            self.level.player.jump()
+            self.level.sprites.player.jump()
 
     def start(self):
         """Start the games main loop which checks events for window closing, checks
@@ -91,7 +91,8 @@ class Game:
                     self.write_highscore_to_db(self.level_number,self.level.counter)
                 running = False
             if self.level.player_demise() is True:
-                self.level.initialize_sprite_groups()
+                #self.level.initialize_sprite_groups()
+                self.level.re_initialize()
                 self.level.setup()
             self.handle_inputs()
             self.level.update()
