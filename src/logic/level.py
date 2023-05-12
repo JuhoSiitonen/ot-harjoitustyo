@@ -1,8 +1,6 @@
 import time
 import pygame
-from sprites.cells import Cell
-from sprites.player import Player
-from sprites.enemy import Enemy
+from sprites.sprite_handler import SpriteHandler
 from settings import CELL_SIZE
 
 class Level:
@@ -20,70 +18,17 @@ class Level:
             time_attack (bool): Signals time_counter function to count time.
         """
 
+        self.sprites = SpriteHandler()
         self.level_map = level_map
-        self.initialize_sprite_groups()
         self.setup()
         self.camera_shift = 0
         self.time_attack = time_attack
         self.start = time.time()
         self.counter = 1
 
-    def initialize_sprite_groups(self):
-        """Initializes sprite groups
-        """
-
-        self.cells = pygame.sprite.Group()
-        self.player_cell = pygame.sprite.GroupSingle()
-        self.goal = pygame.sprite.GroupSingle()
-        self.enemies = pygame.sprite.Group()
-        self.blocker = pygame.sprite.Group()
-        self.coins = pygame.sprite.Group()
-        self.artifacts = pygame.sprite.Group()
-        self.all_sprites = pygame.sprite.Group()
-
-    def _sprite_creator(self, type, X, Y):
-        """Instantiates sprites which belong to Cell class.
-
-        Args:
-            type (str): To tell which sprite is created.
-            x (int): Coordinate value for sprite topleft corner.
-            y (int): Coordinate value for sprite topleft corner.
-        """
-
-        if type == "x":
-            self.cell = Cell((X, Y), 64, 64, "white")
-            self.cells.add(self.cell)
-        elif type == "G":
-            self.goal_cell = Cell((X,Y), 32, 64, "blue")
-            self.goal.add(self.goal_cell)
-        elif type == "B":
-            self.blocker_cell = Cell((X,Y), 64, 64, "black")
-            self.blocker.add(self.blocker_cell)
-        elif type == "C":
-            self.coin_cell = Cell((X,Y), 24, 24, "yellow")
-            self.coins.add(self.coin_cell)
-        elif type == "A":
-            self.artifact_cell = Cell((X,Y), 24, 24, "red")
-            self.artifacts.add(self.artifact_cell)
-
-    def _collect_sprites_to_all_sprites(self):
-        """After level data is read and sprites created, adds all 
-        sprites to one group for easier camera movement.
-        """
-
-        self.all_sprites.add(
-            self.blocker,
-            self.coins,
-            self.artifacts,
-            self.cells,
-            self.player_cell,
-            self.goal,
-            self.enemies
-        )
-
     def setup(self):
         """Method to enumerate level_map data and instantiate appropriate 
-        sprite classes. 
+        sprite classes by calling sprite_handler class methods to do it. 
         """
 
         for row_index, row in enumerate(self.level_map):
@@ -93,38 +38,44 @@ class Level:
                 if col == " ":
                     continue
                 if col == "P":
-                    self.player = Player((X, Y))
-                    self.player_cell.add(self.player)
+                    self.sprites.player_sprite_creator(X,Y)
                 elif col == "E":
-                    self.enemy_cell = Enemy((X,Y), 32, 64, "red")
-                    self.enemies.add(self.enemy_cell)
+                    self.sprites.enemy_sprite_creator(X,Y)
                 else:
-                    self._sprite_creator(col, X, Y)
-        self._collect_sprites_to_all_sprites()
+                    self.sprites.sprite_creator(col, X, Y)
+        self.sprites.collect_sprites_to_all_sprites()
+    
+    def re_initialize(self):
+        """Method to re initialize level sprites to their original positions, and thus return 
+        to the beginning of the level. Used in case player sprite collides with enemy, or falls
+        off screen. 
+        """
+
+        self.sprites = SpriteHandler()
 
     def camera(self):
         """Method to move display (camera) according to player movement.
         """
 
-        x = self.player.get_player_x() # pylint: disable=invalid-name
-        direction = self.player.get_direction()
+        x = self.sprites.player.get_player_x() # pylint: disable=invalid-name
+        direction = self.sprites.player.get_direction()
         if x < 300 and direction < 0:
             self.camera_shift = 7
-            self.player.speed = 0
+            self.sprites.player.speed = 0
         elif x > 900 and direction > 0:
             self.camera_shift = -7
-            self.player.speed = 0
+            self.sprites.player.speed = 0
         else:
             self.camera_shift = 0
-            self.player.speed = 7
+            self.sprites.player.speed = 7
 
     def horizontal_collision(self):
         """Method to check player horizontal collisions and return player 
         sprite to appropriate side of obstacle.
         """
 
-        player = self.player_cell.sprite
-        for sprite in self.cells.sprites():
+        player = self.sprites.player_cell.sprite
+        for sprite in self.sprites.cells.sprites():
             if sprite.rect.colliderect(player.rect):
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
@@ -136,8 +87,8 @@ class Level:
         sprite to appropriate side of obstacle.
         """
 
-        player = self.player_cell.sprite
-        for sprite in self.cells.sprites():
+        player = self.sprites.player_cell.sprite
+        for sprite in self.sprites.cells.sprites():
             if sprite.rect.colliderect(player.rect):
                 if player.direction.y < 0:
                     player.rect.top = sprite.rect.bottom
@@ -151,22 +102,22 @@ class Level:
         simultaneously destroying the coin sprite from screen.
         """
 
-        player = self.player_cell.sprite
-        for sprite in self.coins.sprites():
+        player = self.sprites.player_cell.sprite
+        for sprite in self.sprites.coins.sprites():
             if sprite.rect.colliderect(player.rect):
                 sprite.kill()
-                self.player.coins += 1
+                self.sprites.player.coins += 1
 
     def artifact_collision(self):
         """Method to check if player hits artifact, and adds it to artifact 
         count simultaneously destroying the artifact sprite from screen.
         """
 
-        player = self.player_cell.sprite
-        for sprite in self.artifacts.sprites():
+        player = self.sprites.player_cell.sprite
+        for sprite in self.sprites.artifacts.sprites():
             if sprite.rect.colliderect(player.rect):
                 sprite.kill()
-                self.player.artifacts += 1
+                self.sprites.player.artifacts += 1
 
     def level_completion(self):
         """Method to check if player hits level goal and completes level,
@@ -176,8 +127,8 @@ class Level:
             bool: False continues gameplay, True ends game class loop.
         """
 
-        player = self.player_cell.sprite
-        if self.goal_cell.rect.colliderect(player.rect):
+        player = self.sprites.player_cell.sprite
+        if self.sprites.goal_cell.rect.colliderect(player.rect):
             return True
         if self.counter < 0.01:
             self.time_attack = False
@@ -193,10 +144,10 @@ class Level:
             bool: True re initializes level, False continues gameplay.
         """
 
-        player = self.player_cell.sprite
+        player = self.sprites.player_cell.sprite
         if player.rect.y > len(self.level_map) * CELL_SIZE + 100:
             return True
-        for sprite in self.enemies.sprites():
+        for sprite in self.sprites.enemies.sprites():
             if sprite.rect.colliderect(player.rect):
                 return True
         return False
@@ -206,8 +157,8 @@ class Level:
         sprites, which cause the enemy sprites direction to change.
         """
 
-        for enemy in self.enemies:
-            for sprite in self.blocker.sprites():
+        for enemy in self.sprites.enemies:
+            for sprite in self.sprites.blocker.sprites():
                 if sprite.rect.colliderect(enemy.rect):
                     enemy.direction *= -1
             enemy.update((enemy.speed*enemy.direction))
@@ -226,9 +177,9 @@ class Level:
         """
 
         self.time_counter()
-        self.player.move()
+        self.sprites.player.move()
         self.horizontal_collision()
-        self.player.apply_gravity()
+        self.sprites.player.apply_gravity()
         self.vertical_collision()
         self.coin_collision()
         self.artifact_collision()
