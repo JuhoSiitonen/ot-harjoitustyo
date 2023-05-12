@@ -105,9 +105,9 @@ class TestGameLoop(unittest.TestCase):
             StubDB()
         )   
         game.start()
-        player = self.level.player_cell.sprite
+        player = self.level.sprites.player_cell.sprite
         x_value = player.rect.x
-        for enemy in self.level.enemies:
+        for enemy in self.level.sprites.enemies:
             enemy.rect.x = x_value 
         self.assertEqual(self.level.player_demise(), True)
         pygame.quit()
