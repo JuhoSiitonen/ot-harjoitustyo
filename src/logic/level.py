@@ -128,15 +128,22 @@ class Level:
 
     def level_completion(self):
         """Method to check if player hits level goal and completes level.
+        Method also has error cathcing for if user makes own level and
+        forgets to add a player and a goal to it. This exception catching 
+        will set the goal and player on top of each other so the level 
+        will stop running immediately.
 
         Returns:
             bool: False continues gameplay, True ends game class loop.
         """
-
-        player = self.sprites.player_cell.sprite
-        if self.sprites.goal_cell.rect.colliderect(player.rect):
-            return True
-        return False
+        try:
+            player = self.sprites.player_cell.sprite
+            if self.sprites.goal_cell.rect.colliderect(player.rect):
+                return True
+            return False
+        except:
+            self.sprites.sprite_creator("G", 0, 0)
+            self.sprites.player_sprite_creator(0, 0)
 
     def player_demise(self):
         """Method to check if player collides with enemy or falls 
