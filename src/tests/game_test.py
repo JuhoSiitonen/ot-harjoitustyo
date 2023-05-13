@@ -10,6 +10,9 @@ class StubDB:
 class StubClock:
     def tick(self):
         pass
+    
+    def time_now(self):
+        pass
 
 class StubKey_press:
     def __init__(self, key):
@@ -39,7 +42,10 @@ class StubEvent_handling:
     
 class StubRenderer:
     def __init__(self):
-        self.timeout = False
+        pass
+
+    def update(self):
+        pass
 
     def render(self):
         pass
@@ -56,8 +62,8 @@ level_map = ['00000000000000000000',
 
 class TestGameLoop(unittest.TestCase):
     def setUp(self):
-        self.level = Level(level_map, False)
-        self.level_number = 1
+        self.level = Level(level_map, 1)
+        self.time_attack = False
 
     def test_game_can_complete_level(self):
         pressed = StubKey_press(pygame.K_RIGHT).get()
@@ -69,7 +75,7 @@ class TestGameLoop(unittest.TestCase):
             StubClock(),
             StubEvent_handling(events, pressed),
             StubRenderer(),
-            self.level_number,
+            self.time_attack,
             StubDB()
         )
         game.start()
@@ -85,7 +91,7 @@ class TestGameLoop(unittest.TestCase):
             StubClock(),
             StubEvent_handling(events, pressed),
             StubRenderer(),
-            self.level_number,
+            self.time_attack,
             StubDB()
         )
         game.start()
@@ -101,7 +107,7 @@ class TestGameLoop(unittest.TestCase):
             StubClock(),
             StubEvent_handling(events, pressed),
             StubRenderer(),
-            self.level_number,
+            self.time_attack,
             StubDB()
         )   
         game.start()
