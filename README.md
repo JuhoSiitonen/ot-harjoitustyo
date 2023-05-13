@@ -8,6 +8,8 @@ Jumpman on tasohyppely peli joka on sivulle rullaavalla ruudulla toteutettu Pyth
 
 ## Dokumentaatio
 
+- [Käyttöohjeet](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/k%C3%A4ytt%C3%B6ohjeet.md)
+
 - [Arkkitehtuurikuvaus](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/arkkitehtuurikuvaus.md)
 
 - [Vaatimusmäärittely](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/vaatimusmaarittely.md)
@@ -56,8 +58,13 @@ Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönni
 
 ## Tunnetut ongelmat
 
-- Uusien kenttien lisäys vaatii "napin" lisäämisen käyttöliittymään, ei vielä parametrisoitu.
-- Level luokalla liikaa vastuita ja liikaa instanssimuuttujia.
+- SpriteHandler luokalla liikaa instanssimuuttujia.
+- Käyttöliittymäluokka Ui voisi olla paremmin eriytetty sovelluslogiikasta.
+- Tietokanta tiedosto alustetaan ennen pelin ensimmäistä käynnistystä, mutta jos tiedosto poistetaan data kansiosta tai se siirretään sovellus ei siitä itse tokene. 
+- Sovellus lukee pelin kenttien tiedot tekstitiedostosta johon käyttäjä voi itse lisätä kenttiä. Jos käyttäjä ei noudata kentän teko-ohjeita sovellus ajautuu virhetilanteeseen. 
+- Mikäli käyttäjä tekee uuden kentän olemassaolevien kenttien väliin levels.txt tiedostossa, viittaavat highscore tietokannan tiedot vääriin kenttiin sen jälkeen. Kunnes käyttäjä klikkaa painiketta "Erase scores" highscore ikkunassa. 
+- Joissain tilanteissa pygame törmäyksentunnistus ja sovelluksen törmäyksentunnistuslogiikka siirtää pelaajan törmäyksen yhteydessä vahingossa törmätyn spriten yläpuolelle. Harvinainen vika jonka syntyy vaikuttavista olosuhteista ei ole tarpeeksi tietoa sen korjaamiseksi. 
+
 
 
 
