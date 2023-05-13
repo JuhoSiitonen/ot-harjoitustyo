@@ -56,14 +56,6 @@ Sovelluksen Pylint tuloksen saa komennolla:
 
 Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönnistä hahmo hyppää. Punaiset hahmot ovat vihollisia joihin osuttaessa kenttä alkaa alusta, samoin käy myös kun pelaajahahmo putoaa pois kentältä. Keltaiset neliöt ovat kolikkoja ja sininen suorakulmio on maali. Pelaajahahmo voi roikkua "katosta" hyppynappi painettuna pohjaan. 
 
-## Tunnetut ongelmat
-
-- SpriteHandler luokalla liikaa instanssimuuttujia.
-- Käyttöliittymäluokka Ui voisi olla paremmin eriytetty sovelluslogiikasta.
-- Tietokanta tiedosto alustetaan ennen pelin ensimmäistä käynnistystä, mutta jos tiedosto poistetaan data kansiosta tai se siirretään sovellus ei siitä itse tokene. 
-- Sovellus lukee pelin kenttien tiedot tekstitiedostosta johon käyttäjä voi itse lisätä kenttiä. Jos käyttäjä ei noudata kentän teko-ohjeita sovellus ajautuu virhetilanteeseen. 
-- Mikäli käyttäjä tekee uuden kentän olemassaolevien kenttien väliin levels.txt tiedostossa, viittaavat highscore tietokannan tiedot vääriin kenttiin sen jälkeen. Kunnes käyttäjä klikkaa painiketta "Erase scores" highscore ikkunassa. 
-- Joissain tilanteissa pygame törmäyksentunnistus ja sovelluksen törmäyksentunnistuslogiikka siirtää pelaajan törmäyksen yhteydessä vahingossa törmätyn spriten yläpuolelle. Harvinainen vika jonka syntyy vaikuttavista olosuhteista ei ole tarpeeksi tietoa sen korjaamiseksi. 
 
 
 
