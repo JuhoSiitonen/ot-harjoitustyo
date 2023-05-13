@@ -40,16 +40,16 @@ class Level:
 
         for row_index, row in enumerate(self.level_map):
             for col_index, col in enumerate(row):
-                X = col_index * CELL_SIZE # pylint: disable=invalid-name
-                Y = row_index * CELL_SIZE # pylint: disable=invalid-name
+                x_coord = col_index * CELL_SIZE
+                y_coord = row_index * CELL_SIZE
                 if col == " ":
                     continue
                 if col == "P":
-                    self.sprites.player_sprite_creator(X,Y)
+                    self.sprites.player_sprite_creator(x_coord,y_coord)
                 elif col == "E":
-                    self.sprites.enemy_sprite_creator(X,Y)
+                    self.sprites.enemy_sprite_creator(x_coord,y_coord)
                 else:
-                    self.sprites.sprite_creator(col, X, Y)
+                    self.sprites.sprite_creator(col, x_coord, y_coord)
         self.sprites.collect_sprites_to_all_sprites()
 
     def re_initialize(self):
@@ -64,12 +64,12 @@ class Level:
         """Method to move display (camera) according to player movement.
         """
 
-        x = self.sprites.player.get_player_x() # pylint: disable=invalid-name
+        x_coord = self.sprites.player.get_player_x()
         direction = self.sprites.player.get_direction()
-        if x < 300 and direction < 0:
+        if x_coord < 300 and direction < 0:
             self.camera_shift = 7
             self.sprites.player.speed = 0
-        elif x > 900 and direction > 0:
+        elif x_coord > 900 and direction > 0:
             self.camera_shift = -7
             self.sprites.player.speed = 0
         else:

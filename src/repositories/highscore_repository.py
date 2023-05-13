@@ -6,14 +6,14 @@ class HighscoreRepository:
         _DB : Database connection object holder.
     """
 
-    def __init__(self, DB):
+    def __init__(self, database):
         """Class constructor, takes database connection as parameter.
 
         Args:
             db (Object): Database connection object.
         """
 
-        self._DB = DB
+        self._database = database
 
     def highscores_list(self):
         """Method which returns the highscores database best 3 times per level as 
@@ -23,7 +23,7 @@ class HighscoreRepository:
             rows (list): List of tuples (int, float) level number and time.
         """
 
-        cursor = self._DB.cursor()
+        cursor = self._database.cursor()
         cursor.execute("""
             select level, time 
             from (
@@ -44,17 +44,17 @@ class HighscoreRepository:
             level (int): Level number to distinquish level.
             time (float): Time indicated with two decimals.
         """
-        cursor = self._DB.cursor()
+        cursor = self._database.cursor()
         cursor.execute(
             "insert into highscores (level, time) values (?, ?)",
             (level , time)
         )
-        self._DB.commit()
+        self._database.commit()
 
     def erase_highscores(self):
         """Method to delete highscores from database.
         """
 
-        cursor = self._DB.cursor()
+        cursor = self._database.cursor()
         cursor.execute("delete from highscores")
-        self._DB.commit()
+        self._database.commit()

@@ -103,7 +103,7 @@ class Game:
         time counter if time attack if active, and only after then the actual display rendering. 
         Lastly the clock tick for framerate.
         """
-        
+
         self.handle_inputs()
         self.level.update()
         self.renderer.update()
