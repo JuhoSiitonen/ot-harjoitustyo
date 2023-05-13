@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Sovellusta on testattu yksikkö- ja integraatiotesteillä. Luokkaa player on testattu yksikkötestein ja level sekä game luokkia on testattu muiden luokkien kanssa. Game ja level luokissa on huomattava osa sovelluslogiikasta ja erityisesti game luokan testauksessa on käytetty stub luokkia simuloimaan pygame kirjaston toimintoja mitä sovellus oikeasti kutsuu kyseisistä luokista. 
+Sovellusta on testattu yksikkö- ja integraatiotesteillä. Luokkaa player ja highscorerepository on testattu yksinään ja level sekä game luokkia on testattu muiden luokkien kanssa. Game ja level luokissa on huomattava osa sovelluslogiikasta ja erityisesti game luokan testauksessa on käytetty vale stub luokkia simuloimaan pygame kirjaston toimintoja mitä sovellus oikeasti kutsuu kyseisistä luokista. 
 
 Sovelluslogiikkaa toteuttavia luokkia Game ja Level testataan TestGameLoop ja TestLevel luokilla. TestGameLoop luokkaan injektoidaan riippuvuuksiksi luokka Level ja valeluokat StubClock, StubKey_press, StubEvent,StubEvent_handling ja StubRenderer.StubKey_press luokka simuloi oikean ja vasemman nuolinäppäimen sekä välilyönnin painamista. StubEvent luokka simuloi vain pygameQUIT tapahtumaa joka syötetään StubEvent_handling valeluokalle. Game luokkaa testataan kolmella testillä jotka testaavat, kentän läpäisemistä, pygame ikkunan sulkemista ja pelaajan "kuolemaa" pelissä.
 
@@ -18,12 +18,18 @@ Manuaalisessa testauksessa on otettu huomioon data kansiossa olevien tiedostojen
 Sovellusta on testattu manuaalisesti sekä Linux että Windows järjestelmillä käyttäen käyttöohjeiden mukaisia asennusohjeita.
 
 
+# Testikattavuus
+
+![testikattavuus](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/testikattavuus.png)
+
+Testien kattavuus luokkien renderer, clock, event_handling ja moduulin helper_function suhteen on nolla prosenttia. Tämä on koska mainittuja luokkia käytettiin game luokan testaukseen ainoastaan valeluokkina. Nämä luokat periaatteessa edustavat käyttöliittymää, mutta jätin ne testikattavuuteen.
+
+
 # Tunnetut ongelmat
  
 - SpriteHandler luokalla liikaa instanssimuuttujia.
 - Käyttöliittymäluokka Ui voisi olla paremmin eriytetty sovelluslogiikasta.
-- Tietokanta tiedosto alustetaan ennen pelin ensimmäistä käynnistystä, mutta jos tiedosto poistetaan data kansiosta tai se siirretään sovellus ei siitä itse tokene. 
-- Sovellus lukee pelin kenttien tiedot tekstitiedostosta johon käyttäjä voi itse lisätä kenttiä. Jos käyttäjä ei noudata kentän teko-ohjeita sovellus ajautuu virhetilanteeseen. 
+- Tietokanta tiedosto alustetaan ennen pelin ensimmäistä käynnistystä komentorivikomennolla.
 - Mikäli käyttäjä tekee uuden kentän olemassaolevien kenttien väliin levels.txt tiedostossa, viittaavat highscore tietokannan tiedot vääriin kenttiin sen jälkeen. Kunnes käyttäjä klikkaa painiketta "Erase scores" highscore ikkunassa. 
 - Joissain tilanteissa pygame törmäyksentunnistus ja sovelluksen törmäyksentunnistuslogiikka siirtää pelaajan törmäyksen yhteydessä vahingossa törmätyn spriten yläpuolelle. Harvinainen vika jonka syntyy vaikuttavista olosuhteista ei ole tarpeeksi tietoa sen korjaamiseksi. 
-- Testien kattavuus on hieman liian alhainen.
+- Testien kattavuus luokkien renderer, clock, event_handling ja moduulin helper_function suhteen on nolla prosenttia. Tämä on koska mainittuja luokkia käytettiin game luokan testaukseen ainoastaan valeluokkina. Nämä luokat periaatteessa edustavat käyttöliittymää, mutta jätin ne testikattavuuteen. 
