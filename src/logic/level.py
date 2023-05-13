@@ -136,14 +136,16 @@ class Level:
         Returns:
             bool: False continues gameplay, True ends game class loop.
         """
+
         try:
             player = self.sprites.player_cell.sprite
             if self.sprites.goal_cell.rect.colliderect(player.rect):
                 return True
             return False
-        except:
+        except AttributeError:
             self.sprites.sprite_creator("G", 0, 0)
             self.sprites.player_sprite_creator(0, 0)
+            return True
 
     def player_demise(self):
         """Method to check if player collides with enemy or falls 
