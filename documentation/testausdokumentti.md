@@ -13,7 +13,7 @@ Player luokalla on pelaaja spriten liikkeeseen liittyviä metodeja joita kaikkia
 
 Järjestelmätestaus on suurimmilta osin toteutettu manuaalisesti, vain Game luokan testeissä on useamman initialisoidun luokan (Game ja Level) luokkien yhteistoimintaa.
 
-Manuaalisessa testauksessa on otettu huomioon data kansiossa olevien tekstitiedostojen sisältö, kuten mikäli levels.txt on tyhjä tai highscores on tyhjä.
+Manuaalisessa testauksessa on otettu huomioon data kansiossa olevien tiedostojen sisältö, kuten mikäli levels.txt on tyhjä tai highscore tietokanta on tyhjä. On myös testattu että sovellus toimii vaikka levels.txt tiedostoon syötettäisiin virheellistä kenttätietoa. 
 
 Sovellusta on testattu manuaalisesti sekä Linux että Windows järjestelmillä käyttäen käyttöohjeiden mukaisia asennusohjeita.
 
