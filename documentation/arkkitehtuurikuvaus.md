@@ -143,7 +143,9 @@ Käyttäjä voi myös valita Time attack moodin sen nimisestä painikkeesta tai 
 
 PySimpleGUI näkymät on toteutettu samassa UI luokassa ja pygame näkymää pyörittää Render luokka game luokan ohjastamana. 
 
+![Main_menu](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/jumpman_main_menu.png)
 
+![highscore_menu](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/jumpman_highscore_menu.png)
 
 Pelin käynnistäminen sekvenssikaaviona
 
