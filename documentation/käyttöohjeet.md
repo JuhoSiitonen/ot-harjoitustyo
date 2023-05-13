@@ -26,9 +26,17 @@ kenttätietojen loppua. Ilman tätä tiedostoa pelaaminen ei onnistu, mutta sen 
 Kenttädatan merkkien selitykset:
 
 **x = Harmaa seinä/lattia/katto sprite, useita per kenttä.**
+
 **P = Vihreä pelaaja sprite, vain yksi per kenttä.**
+
 **C = Keltainen kolikko sprite, voi olla useita per kenttä.**
+
 **A = Punainen artifakti sprite, voi olla useita per kenttä.**
+
 **E = Punainen vihollis sprite, voi olla useita per kenttä.**
-**B = Näkymätön sprite johon osuessaan vihollinen muuttaa suuntaa.**
+
+**B = Näkymätön sprite johon osuessaan vihollinen muuttaa suuntaa**
+
 **G = Pelin maali sprite, vain yksi per kenttä.**
+
+Pelin .env tiedostossa voi myös muuttaa pelin spritejen oletusarvoista kokoa. Päähakemiston .env tiedostossa solujen koko on oletusarvoisesti 64 pikseliä. .env tiedostossa voi myös muokata pygame ikkunan leveyttä joka on oletusarvoisesti 1200 pikseliä. 
