@@ -39,4 +39,10 @@ Kenttädatan merkkien selitykset:
 
 **G = Pelin maali sprite, vain yksi per kenttä.**
 
-Pelin .env tiedostossa voi myös muuttaa pelin spritejen oletusarvoista kokoa. Päähakemiston .env tiedostossa solujen koko on oletusarvoisesti 64 pikseliä. .env tiedostossa voi myös muokata pygame ikkunan leveyttä joka on oletusarvoisesti 1200 pikseliä. 
+Pelin .env tiedostossa voi myös muuttaa pelin spritejen oletusarvoista kokoa. Päähakemiston .env tiedostossa solujen koko on oletusarvoisesti 64 pikseliä. 
+
+**CELL_SIZE=64**
+
+.env tiedostossa voi myös muokata pygame ikkunan leveyttä joka on oletusarvoisesti 1200 pikseliä. 
+
+**DISPLAY_WIDTH=1200**
