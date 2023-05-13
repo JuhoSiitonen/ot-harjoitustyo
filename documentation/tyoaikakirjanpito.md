@@ -49,12 +49,12 @@
 - Tiistai 9.5 2h (Highscore tiedoston luku ja kirjoitus, dokumentaatio)
 - Keskiviikko 10.5 4h (Highscore tiedon tallentaminen ja lukeminen tietokannasta, docstring)
 - Torstai 11.5 2h (Luokkien refaktorointia, highscore tietokannan kehittäminen, dokumentaatio)
-- Perjantai 12.5 2h (Luokkien refaktorointia, level luokan vastuiden pienentäminen uudella SpriteHandler luokalla joka luo sprite ryhmät, initialisoi sprite luokat kuten cells, player ja enemy. Lisää Docstringiä ja dokumentaatiota)
+- Perjantai 12.5 3h (Luokkien refaktorointia, level luokan vastuiden pienentäminen uudella SpriteHandler luokalla joka luo sprite ryhmät, initialisoi sprite luokat kuten cells, player ja enemy. Lisää Docstringiä ja dokumentaatiota)
 - Lauantai 13.5 3h (.env muuttujien luominen, testien kehitys, pylint korjaukset, time attack moodin logiikan siirto game luokkaan, dokumentaatio)
--Sunnuntai 14.5 2h (Viimeistelyt loppupalautus ohjeiden mukaan)
+-Sunnuntai 14.5 3h (Viimeistelyt loppupalautus ohjeiden mukaan)
 
 
--Viikon totaali : 22h
+-Viikon totaali : 24h
 
-### Projektin totaali : 72h
+### Projektin totaali : 74h
 
