@@ -10,6 +10,10 @@ Sovelluksella on kolme eri näkymää, ensimmäinen on valikko josta voidaan sii
 
 Ensimmäinen ja kolmas näkymä ovat PySimpleGUI kirjastolla toteutettuja näkymiä ja itse pelinäkymä on pygame kirjastolla toteutettu.
 
+![aloitusruutu](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/Jumpman%20k%C3%A4ytt%C3%B6liittym%C3%A4luonnos1.PNG)
+
+![kakkosruutu](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/Jumpman%20highscore%20k%C3%A4ytt%C3%B6liittym%C3%A4luonnos2.PNG)
+
 ## Toiminnallisuudet
 
 - [x] Käyttöliittymä joka mahdollistaa pelattavan kentän valinnan

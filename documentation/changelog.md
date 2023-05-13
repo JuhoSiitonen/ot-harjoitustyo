@@ -48,3 +48,6 @@
 - Highscore tiedon tallentaminen tiedoston sijasta sqlite tietokantaan, sen vaatimat muutokset ui ja game luokkiin sekä kansion repositories luominen. Myös moduulit database_connection.py, database_initialization.py ja build.py luotu tietokanta operaatioiden hallintaan. 
 - Highscore PySImpleGUI ikkunaan lisätty erase scores painike jolla voi tyhjentää tietokannan sisällön. 
 - Level luokan vastuiden pienentäminen siirtämällä spritejen luomisen uuteen SpriteHandler luokkaan.
+- Level luokan pienentäminen siirtämällä time attack moodin logiikka game, clock ja render luokkiin. 
+- .env mympäristömuuttujien käyttö sprite koon, näytön koon ja tiedostojen nimien parametrisoinnissa.
+
