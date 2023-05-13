@@ -11,6 +11,8 @@ except FileNotFoundError:
 DATABASE_FILENAME = os.getenv("DATABASE_FILENAME") or "database.sqlite"
 DATABASE_FILE_PATH = os.path.join(dirname, "data", DATABASE_FILENAME)
 
-CELL_SIZE = 64
+LEVELS_FILENAME = os.getenv("LEVELS_FILENAME") or "levels.txt"
+LEVELS_FILE_PATH = os.path.join(dirname, "data", LEVELS_FILENAME)
 
+CELL_SIZE = 64
 DISPLAY_WIDTH = 1200

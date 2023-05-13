@@ -9,8 +9,8 @@ class SpriteHandler:
     to be able to update all of the same kind of sprites with one command. 
 
     Attributes:
-        cells : Most generic sprites are the cell class sprites, they have only an update method, and
-            can be modified with the class instantiation args.
+        cells : Most generic sprites are the cell class sprites, they have only an update method, 
+        and can be modified with the class instantiation args.
         player_cell: Player sprite which has methods for movement in the screen.
         goal: The level goal sprite, generic cell class sprite.
         enemies: Enemy sprites, have an update method and direction and speed variables.
@@ -34,32 +34,36 @@ class SpriteHandler:
         self.artifacts = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
-    def sprite_creator(self, type, X, Y):
+        self.goal_cell = ""
+        self.player = ""
+        self.enemy_cell = ""
+
+    def sprite_creator(self, sprite_type, x_coord, y_coord):
         """Instantiates sprites which belong to Cell class.
 
         Args:
-            type (str): To tell which sprite is created.
+            sprite_type (str): To tell which sprite is created.
             x (int): Coordinate value for sprite topleft corner.
             y (int): Coordinate value for sprite topleft corner.
         """
 
-        if type == "x":
-            self.cell = Cell((X, Y), 64, 64, "white")
-            self.cells.add(self.cell)
-        elif type == "G":
-            self.goal_cell = Cell((X,Y), 32, 64, "blue")
+        if sprite_type == "x":
+            cell = Cell((x_coord, y_coord), 64, 64, "white")
+            self.cells.add(cell)
+        elif sprite_type == "G":
+            self.goal_cell = Cell((x_coord,y_coord), 32, 64, "blue")
             self.goal.add(self.goal_cell)
-        elif type == "B":
-            self.blocker_cell = Cell((X,Y), 64, 64, "black")
-            self.blocker.add(self.blocker_cell)
-        elif type == "C":
-            self.coin_cell = Cell((X,Y), 24, 24, "yellow")
-            self.coins.add(self.coin_cell)
-        elif type == "A":
-            self.artifact_cell = Cell((X,Y), 24, 24, "red")
-            self.artifacts.add(self.artifact_cell)
+        elif sprite_type == "B":
+            blocker_cell = Cell((x_coord,y_coord), 64, 64, "black")
+            self.blocker.add(blocker_cell)
+        elif sprite_type == "C":
+            coin_cell = Cell((x_coord,y_coord), 24, 24, "yellow")
+            self.coins.add(coin_cell)
+        elif sprite_type == "A":
+            artifact_cell = Cell((x_coord,y_coord), 24, 24, "red")
+            self.artifacts.add(artifact_cell)
 
-    def player_sprite_creator(self, X, Y):
+    def player_sprite_creator(self, x_coord, y_coord):
         """Method to instantiate the player class cell. One per level.
 
         Args:
@@ -67,10 +71,10 @@ class SpriteHandler:
             Y (int): Y axis coordinate for cell topleft corner
         """
 
-        self.player = Player((X, Y))
+        self.player = Player((x_coord, y_coord))
         self.player_cell.add(self.player)
 
-    def enemy_sprite_creator(self, X, Y):
+    def enemy_sprite_creator(self, x_coord, y_coord):
         """Method to instantiate the enemy class cells, can be many per level.
 
         Args:
@@ -78,7 +82,7 @@ class SpriteHandler:
             Y (int): Y axis coordinate for cell topleft corner
         """
 
-        self.enemy_cell = Enemy((X,Y), 32, 64, "red")
+        self.enemy_cell = Enemy((x_coord,y_coord), 32, 64, "red")
         self.enemies.add(self.enemy_cell)
 
     def collect_sprites_to_all_sprites(self):

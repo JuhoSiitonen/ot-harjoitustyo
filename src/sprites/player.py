@@ -88,5 +88,5 @@ class Player(pygame.sprite.Sprite):
         Returns:
             int : -1 is direction to left, and +1 to right.
         """
-        
+
         return self.direction.x

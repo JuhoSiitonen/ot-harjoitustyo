@@ -61,11 +61,10 @@ class Renderer:
         self.counter_text(self.level.sprites.player.coins, "yellow", (1100, 25))
         self.counter_text(self.level.sprites.player.artifacts, "red", (1100, 70))
         self.level.camera()
-        
+
 
     def render(self):
         """Method to actually update the display for the user
         """
-        
-        pygame.display.update()
 
+        pygame.display.update()

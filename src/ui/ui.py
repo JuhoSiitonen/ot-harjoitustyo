@@ -27,7 +27,7 @@ class UI:
             window2: Instance of PySimpleGUI window for showcasing highscores.
             window2_active = Bool value, if true run loop will run code to display
                 highscore window.
-            DB = Database connection object.
+            database = Database connection object.
             highscore_repository: Object to handle database operations regarding highscores.
     """
 
@@ -40,11 +40,13 @@ class UI:
         """
 
         self.check_levels_file()
-        self.DB = get_db_connection()
-        self.highscore_repository = HighscoreRepository(self.DB)
+        self.database = get_db_connection()
+        self.highscore_repository = HighscoreRepository(self.database)
         self.create_window()
         self.time_attack = False
         self.window2_active = False
+        self.highscores = []
+        self.window2 = ""
 
     def check_levels_file(self):
         """Calls support function to read levels.txt file and set the return 
@@ -86,10 +88,10 @@ class UI:
 
         if not self.time_attack:
             self.time_attack = True
-            self.window["Time Attack"].update(button_color = ("blue"))
+            self.window["Time Attack"].update(button_color=("blue")) # pylint: disable=superfluous-parens
         else:
             self.time_attack = False
-            self.window["Time Attack"].update(button_color = (None, "grey"))
+            self.window["Time Attack"].update(button_color=(None, "grey"))
 
     def create_highscore_window(self):
         """Creates a PysimpleGUI window for showing 3 highscores per
@@ -170,16 +172,16 @@ class UI:
             level_map (list): Nested list with the level layout.
             level_number (int): Integer to tell which level is played.
         """
-        DISPLAY_HEIGHT = len(self.level_maps[level_number-1]) * CELL_SIZE
-        display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
+        display_height = len(self.level_maps[level_number-1]) * CELL_SIZE
+        display = pygame.display.set_mode((DISPLAY_WIDTH, display_height))
         clock = Clock()
         level = Level(level_map, level_number)
         renderer = Renderer(display, level, self.time_attack)
         event_handling = EventHandling()
-        game = Game(level, clock, event_handling, renderer, self.time_attack, self.highscore_repository)
-
+        game = Game(
+            level, clock, event_handling, renderer, self.time_attack, self.highscore_repository
+            )
         pygame.display.set_caption("Jumpman")
         pygame.init()
-
         game.start()

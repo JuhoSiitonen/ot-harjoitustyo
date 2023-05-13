@@ -1,3 +1,4 @@
+from settings import LEVELS_FILE_PATH
 
 def level_file_reader():
     """Function to read level files from a text file. 
@@ -7,8 +8,8 @@ def level_file_reader():
     """
 
     all_lines, levels, single_level = [], [], []
-    with open("src/data/levels.txt", "r", encoding="utf-8") as file:
-        [all_lines.append(line.strip("\n")) for line in file.readlines()]
+    with open(LEVELS_FILE_PATH, "r", encoding="utf-8") as file:
+        all_lines = [(line.strip("\n")) for line in file.readlines()]
     for line in all_lines:
         if line == "-":
             levels.append(single_level)
