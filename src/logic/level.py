@@ -12,27 +12,24 @@ class Level:
             to create level with setup method.
         camera_shift: Integer value for "camera" movement speed, actually 
             the display doesn't move, all the sprites move instead. 
-        time_attack: Boolean value to know if timer needs to be calculated and
-            upon level completion sent to highscore database.
-        start: Timestamp of when the level begins.
-        counter: Time counter for time attack mode.
+        level_number: Integer value to identify level.
     """
 
-    def __init__(self, level_map, time_attack):
+    def __init__(self, level_map, level_number):
         """Class constructor which calls a method to initialize sprite 
-        groups and then sets up the level from level_map list data. If 
-        time attack mode is chosen, begins timer. 
+        groups and then sets up the level from level_map list data, also 
+        keeps level number info. 
 
         Args:
             level_map (list): List with level data.
-            time_attack (bool): Signals time_counter function to count time.
+            level_number (int): Levels identifying integer.
         """
 
         self.sprites = SpriteHandler()
         self.level_map = level_map
         self.setup()
         self.camera_shift = 0
-        self.time_attack = time_attack
+        self.level_number = level_number
         self.start = time.time()
         self.counter = 1
 
@@ -130,8 +127,7 @@ class Level:
                 self.sprites.player.artifacts += 1
 
     def level_completion(self):
-        """Method to check if player hits level goal and completes level,
-        also check if time runs out. If time runs out exits level.
+        """Method to check if player hits level goal and completes level.
 
         Returns:
             bool: False continues gameplay, True ends game class loop.
@@ -139,9 +135,6 @@ class Level:
 
         player = self.sprites.player_cell.sprite
         if self.sprites.goal_cell.rect.colliderect(player.rect):
-            return True
-        if self.counter < 0.01:
-            self.time_attack = False
             return True
         return False
 
@@ -173,20 +166,11 @@ class Level:
                     enemy.direction *= -1
             enemy.update((enemy.speed*enemy.direction))
 
-    def time_counter(self):
-        """If time attack mode is chosen this method calculates time left from the
-        starting timestamp self.start.
-        """
-
-        if self.time_attack:
-            self.counter = round((15.0 - (time.time() - self.start)), 2)
-
     def update(self):
         """Method to call other methods from level class and also player class
         to check all collisions, update timer, and move player.
         """
 
-        self.time_counter()
         self.sprites.player.move()
         self.horizontal_collision()
         self.sprites.player.apply_gravity()

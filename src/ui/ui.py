@@ -174,10 +174,10 @@ class UI:
         display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
         clock = Clock()
-        level = Level(level_map, self.time_attack)
+        level = Level(level_map, level_number)
         renderer = Renderer(display, level, self.time_attack)
         event_handling = EventHandling()
-        game = Game(level, clock, event_handling, renderer, level_number, self.highscore_repository)
+        game = Game(level, clock, event_handling, renderer, self.time_attack, self.highscore_repository)
 
         pygame.display.set_caption("Jumpman")
         pygame.init()

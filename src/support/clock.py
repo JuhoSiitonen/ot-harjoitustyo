@@ -1,4 +1,5 @@
 import pygame
+import time
 
 
 class Clock:
@@ -19,3 +20,11 @@ class Clock:
         """
 
         self.clock.tick(60)
+
+    def time_now(self):
+        """Method to give time attack mode the starting time.
+
+        Returns:
+            float: timestamp.
+        """
+        return time.time()

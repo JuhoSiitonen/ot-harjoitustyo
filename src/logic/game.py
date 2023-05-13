@@ -7,39 +7,40 @@ class Game:
 
     Attributes:
         level: Level object which handles sprites and their interactions in the 
-        rendered level.
+            rendered level.
         clock: Clock object which refreshes the Pygame window 60 time a second.
-        even_handling: Event_handling object which sends the Pygame events and inputs
-        to this class.
+            even_handling: Event_handling object which sends the Pygame events and inputs
+            to this class.
         renderer: Renderer object which handles rendering the Pygame screen with sprites
-        and text.
-        level_number: Integer to help call highscore database insertion after time attack 
-        level completion.
+            and text.
+        time_attack: Boolean value to indicate if time attack mode is chosen.
         hs_rep: Highscore_Repository object to interact with highscore database.
     """
 
-    def __init__(self, level, clock, event_handling, renderer, level_number, hs_rep):
+    def __init__(self, level, clock, event_handling, renderer, time_attack, hs_rep):
         """Constructor for the class, connects the injected dependencies to this 
         instance of game class.
 
         Args:
             level (object): Level object which handles sprites and their interactions in the 
-            rendered level.
+                rendered level.
             clock (object): Clock object which refreshes the Pygame window 60 time a second.
             event_handling (object): Event_handling object which sends the Pygame events and 
-            inputs to this class.
+                inputs to this class.
             renderer (object): Renderer object which handles rendering the Pygame screen 
-            with sprites and text.
+                with sprites and text.
             level_number (int): Integer to help call highscore database insertion after time attack 
-            level completion.
+                level completion.
             hs_rep (object): Highscore_Repository object to interact with highscore database.
         """
 
-        self.level_number = level_number
         self.level = level
         self.clock = clock
         self.event_handling = event_handling
         self.renderer = renderer
+        self.time_attack = time_attack
+        self.start_time = self.clock.time_now()
+        self.counter = 1
         self.highscore_repository = hs_rep
 
     def handle_events(self):
@@ -47,7 +48,7 @@ class Game:
 
         Returns:
             Bool: If true the player has not exited the Pygame window, if false the
-            window is closed and a return to the UI window ensues. 
+                window is closed and a return to the UI window ensues. 
         """
 
         for event in self.event_handling.get():
@@ -78,25 +79,37 @@ class Game:
         Method then calls handle_inputs to move player, level objects update method to
         update sprites and check collisions, then render method to render the screen and
         clock object to refresh the screen at a certain framerate. If loop is exited by
-        completing level or exiting Pygame window it quits pygame to return to UI window.
+        completing level, or timer runs out in time attack or exiting Pygame window it quits 
+        pygame to return to UI window.
         """
 
         running = True
         while running:
-            if not self.handle_events():
+            if not self.handle_events() or self.counter < 0.01:
                 running = False
             if self.level.level_completion():
-                if self.level.time_attack:
-                    self.write_highscore_to_db(self.level_number,self.level.counter)
+                if self.time_attack:
+                    self.write_highscore_to_db()
                 running = False
             if self.level.player_demise() is True:
                 self.level.re_initialize()
                 self.level.setup()
-            self.handle_inputs()
-            self.level.update()
-            self.render()
-            self.clock.tick()
+            self.update()
         pygame.quit()
+
+    def update(self):
+        """Method to call update methods in order. First input handling, then level update to 
+        position sprites, then renderer for sprite position updates to display. Next renderer for 
+        time counter if time attack if active, and only after then the actual display rendering. 
+        Lastly the clock tick for framerate.
+        """
+        
+        self.handle_inputs()
+        self.level.update()
+        self.renderer.update()
+        self.time_counter()
+        self.render()
+        self.clock.tick()
 
     def render(self):
         """Calls renderer object to render the pygame screen.
@@ -104,7 +117,16 @@ class Game:
 
         self.renderer.render()
 
-    def write_highscore_to_db(self, level_number, counter):
+    def time_counter(self):
+        """If time attack mode is chosen this method calculates time left from the
+        starting timestamp self.start_time.
+        """
+
+        if self.time_attack:
+            self.counter = round((15.0 - (self.clock.time_now() - self.start_time)), 2)
+            self.renderer.time_counter(self.counter)
+
+    def write_highscore_to_db(self):
         """Method to call database repository object for insertion into
         the highscore database. 15 seconds is the max completion time which is shown 
         on the screen running down, so to insert the actual completion time to database
@@ -115,5 +137,5 @@ class Game:
             counter (float): Time left in counter after level completion.
         """
 
-        time = round(15 - counter, 2)
-        self.highscore_repository.insert_into_highscores(level_number,time)
+        time = round(15 - self.counter, 2)
+        self.highscore_repository.insert_into_highscores(self.level.level_number,time)
