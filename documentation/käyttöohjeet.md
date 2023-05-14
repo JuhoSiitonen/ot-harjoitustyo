@@ -27,6 +27,7 @@ Sovelluksen Pylint tuloksen saa komennolla:
 
 **poetry run invoke lint**
 
+## Sovelluksen käyttäminen 
 
 Sovelluksen käynnistyessä aukeaa PySimpleGUI ikkuna jossa voi valita pelattavan kentän ja mikäli haluaa pelata Time Attack moodissa jossa on 15 sekuntia aikaa läpäistä kenttä (moodin aikaraja on konfiguroitavissa). Tässä päävalikko ikkunassa voi myös valita Highscores painikkeen joka aukaisee uuden ikkunan jossa on esitettynä kaikkien kenttien kolme parasta läpäisyaikaa (mikäli niitä on).
 
