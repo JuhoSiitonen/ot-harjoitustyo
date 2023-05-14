@@ -5,6 +5,7 @@ htmlcov
 .vscode
 
 # data files
-data/database.sqlite
+src/data/database.sqlite
+src/data/test-database.sqlite
 
 
