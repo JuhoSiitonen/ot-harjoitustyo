@@ -155,6 +155,8 @@ Kun peli käynnistetään jotain käyttöliittymän level painiketta painamalla 
 
 Ui luokka initialisoi game luokan vaatimat riippuvuudet ja injektoi ne game luokan konstruktorin kautta. Seuraavaksi UI luokka initialisoi pygame ikkunan ja kutsuu game luokan metodia start(), joka käynnistää silmukan jossa päivitetään pelinäkymää. 
 
+Pelin time attack moodin aikaraja on konfiguroitava parametri joka on oletusarvoisesti 15 sekuntia. Aikarajan määrittävä TIME_LIMIT muuttuja on muokattavissa päähakemiston .env tiedostossa.
+
 **Pelin käynnistäminen sekvenssikaaviona**
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_class_sequence.png)

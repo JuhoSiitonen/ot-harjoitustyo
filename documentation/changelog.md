@@ -49,5 +49,8 @@
 - Highscore PySImpleGUI ikkunaan lisätty erase scores painike jolla voi tyhjentää tietokannan sisällön. 
 - Level luokan vastuiden pienentäminen siirtämällä spritejen luomisen uuteen SpriteHandler luokkaan.
 - Level luokan pienentäminen siirtämällä time attack moodin logiikka game, clock ja render luokkiin. 
-- .env mympäristömuuttujien käyttö sprite koon, näytön koon ja tiedostojen nimien parametrisoinnissa.
+- .env ympäristömuuttujien käyttö sprite koon, näytön koon ja tiedostojen nimien parametrisoinnissa.
+- .env ympäristömuuttujan käyttö time attack moodin aikarajan määrityksessä. 
+- Apufunktion level_file_reader() logiikkaan lisätty try except rakenne jotta sovellus toimii siinäkin tilanteessa kun levels.txt tiedostoa ei löydy. 
+- Level luokan level_completion() metodiin lisätty try except rakenne jotta sovellus toimii vaikka käyttäjä tekisi uuden kentän joka on täysin tyhjä. 
 

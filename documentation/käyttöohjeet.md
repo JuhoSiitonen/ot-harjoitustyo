@@ -1,7 +1,6 @@
 # Käyttöohje
 
-Sovelluksen käynnistyessä aukeaa PySimpleGUI ikkuna jossa voi valita pelattavan kentän ja mikäli haluaa pelata Time Attack moodissa jossa on 15 sekuntia aikaa läpäistä kenttä. Tässä päävalikko ikkunassa voi myös valita Highscores painikkeen joka aukaisee uuden 
-ikkunan jossa on esitettynä kaikkien kenttien kolme parasta läpäisyaikaa (mikäli niitä on).
+Sovelluksen käynnistyessä aukeaa PySimpleGUI ikkuna jossa voi valita pelattavan kentän ja mikäli haluaa pelata Time Attack moodissa jossa on 15 sekuntia aikaa läpäistä kenttä (moodin aikaraja on konfiguroitavissa). Tässä päävalikko ikkunassa voi myös valita Highscores painikkeen joka aukaisee uuden ikkunan jossa on esitettynä kaikkien kenttien kolme parasta läpäisyaikaa (mikäli niitä on).
 
 Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönnistä hahmo hyppää. Punaiset hahmot ovat vihollisia joihin osuttaessa kenttä alkaa alusta, samoin käy myös kun pelaajahahmo putoaa pois kentältä. Keltaiset neliöt ovat kolikkoja, punaiset neliöt artifakteja ja sininen suorakulmio on maali. Pelaajahahmo voi roikkua "katosta" hyppynappi painettuna pohjaan. 
 
@@ -46,3 +45,7 @@ Pelin .env tiedostossa voi myös muuttaa pelin spritejen oletusarvoista kokoa. P
 .env tiedostossa voi myös muokata pygame ikkunan leveyttä joka on oletusarvoisesti 1200 pikseliä. 
 
 **DISPLAY_WIDTH=1200**
+
+.env tiedostossa voi myös muokata pelin time attack moodin aikarajaa, joka on oletusarvoisesti 15 sekuntia.
+
+**TIME_LIMIT=15**
