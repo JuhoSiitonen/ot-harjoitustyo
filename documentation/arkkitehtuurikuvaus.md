@@ -151,11 +151,15 @@ PySimpleGUI näkymät on toteutettu samassa UI luokassa ja pygame näkymää py�
 
 ### Pelilogiikan toiminta
 
+Kun peli käynnistetään jotain käyttöliittymän level painiketta painamalla UI luokka käynnistää uuden säikeen, joka huolehtii pygame ikkunan pyörittämisestä. Kun peli päättyy ja pygame ikkuna sulkeutuu tämä luotu säie lopetetaan ja palataan käyttöliittymän PySimpleGUi ikkunaan. Säikeiden käytöllä pygame ikkunan pyörittämiseen oli helpoin saada aikaan toiminnallisuus jossa pygame ikkuna sulkeutuu kokonaan, mutta käyttöliittymä ikkuna jää vielä käytettäväksi. 
+
+Ui luokka initialisoi game luokan vaatimat riippuvuudet ja injektoi ne game luokan konstruktorin kautta. Seuraavaksi UI luokka initialisoi pygame ikkunan ja kutsuu game luokan metodia start(), joka käynnistää silmukan jossa päivitetään pelinäkymää. 
+
 **Pelin käynnistäminen sekvenssikaaviona**
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_class_sequence.png)
 
-Yllä olevassa sekvenssikaaviossa kuvataan mitä tapahtuu sen jälkeen kun käyttäjä klikkaa jotain aloitus käyttöliittymän level painikkeista. Ui luokan metodi run_game() alustaa tarvittavat riippuvuudet game luokan olion luomiseksi. Riippuvuudet injektoidaan game luokan olioon sen konstruktorin kautta. Game luokassa start() metodi pyörittää pygame peliä ylläpitävää silmukkaa, joka tarkastaa pelinäkymän tapahtumat, käyttäjän syötteet ja level luokan metodeilla level_completion() ja player_demise, sen tulisiko pelinäkymä pysäyttää tai aloittaa valittu pelikenttä alusta. 
+Game luokassa start() metodi pyörittää pygame peliä ylläpitävää silmukkaa, joka tarkastaa pelinäkymän tapahtumat, käyttäjän syötteet ja level luokan metodeilla level_completion() ja player_demise, sen tulisiko pelinäkymä pysäyttää tai aloittaa valittu pelikenttä alusta. 
 
 **Level luokan toiminta sekvenssikaaviona**
 
