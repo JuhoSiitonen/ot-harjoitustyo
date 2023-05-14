@@ -16,3 +16,4 @@ LEVELS_FILE_PATH = os.path.join(dirname, "data", LEVELS_FILENAME)
 
 CELL_SIZE = int(os.getenv("CELL_SIZE") or "64")
 DISPLAY_WIDTH = int(os.getenv("DISPLAY_WIDTH") or "1200")
+TIME_LIMIT = int(os.getenv("TIME_LIMIT") or "15")

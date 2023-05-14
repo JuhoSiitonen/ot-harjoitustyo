@@ -1,4 +1,3 @@
-import time
 from sprites.sprite_handler import SpriteHandler
 from settings import CELL_SIZE
 

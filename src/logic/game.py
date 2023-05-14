@@ -1,4 +1,5 @@
 import pygame
+from settings import TIME_LIMIT
 
 class Game:
     """Class to handle Pygame loop by checking events, inputs and updating the 
@@ -18,7 +19,8 @@ class Game:
         time_attack: Boolean value to indicate if time attack mode is chosen.
         highscore_repository: Highscore_Repository object to interact with highscore database.
         counter: Time attack mode time counter, default value 1, but if time attack begins it is
-            15 seconds minus time difference between self.start_time and time now. 
+            TIME_LIMIT variable amount of seconds minus time difference between self.start_time 
+            and time now. 
         start_time: Float value for time at the start of the level. 
     """
 
@@ -83,7 +85,7 @@ class Game:
         """Start the games main loop which checks events for window closing, checks
         if the player has finished the level, checks if player dies and then re-
         initializes the level object sprites and returns to the start of the level. 
-        Method then calls its own update method to handle_inputs to move player, level objects update
+        Method then calls update method handle_inputs to move player, level objects update
         method to update sprites and check collisions, then render method to render the screen and
         clock object to refresh the screen at a certain framerate. If loop is exited by
         completing level, or timer runs out in time attack or exiting Pygame window it quits 
@@ -130,7 +132,7 @@ class Game:
         """
 
         if self.time_attack:
-            self.counter = round((15.0 - (self.clock.time_now() - self.start_time)), 2)
+            self.counter = round((TIME_LIMIT - (self.clock.time_now() - self.start_time)), 2)
             self.renderer.time_counter(self.counter)
 
     def write_highscore_to_db(self):
@@ -144,5 +146,5 @@ class Game:
             counter (float): Time left in counter after level completion.
         """
 
-        time = round(15 - self.counter, 2)
+        time = round(TIME_LIMIT - self.counter, 2)
         self.highscore_repository.insert_into_highscores(self.level.level_number,time)
