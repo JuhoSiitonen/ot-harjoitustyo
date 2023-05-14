@@ -137,9 +137,11 @@ classDiagram
 
 ### Käyttöliittymä
 
-Sovelluksen käyttöliittymässä on kolme näkymää. Kaksi näkymää tuottaa PySimpleGUI kirjasto ja itse pelinäkymän tuottaa Pygame kirjasto. Ensimmäinen näkymä mikä aukeaa sovelluksen käynnistyksen yhteydessä on PySimpleGUI ikkuna jossa käyttäjä voi valita kentän mitä pelata (kenttien määrä ja siten kenttäpainikkeiden määrä määräytyy levels.txt tiedostossa olevien kenttien määrän mukaan).
+Sovelluksen käyttöliittymässä on kolme näkymää. Kaksi näkymää tuottaa PySimpleGUI kirjasto ja itse pelinäkymän tuottaa Pygame kirjasto. Ensimmäinen näkymä mikä aukeaa sovelluksen käynnistyksen yhteydessä on PySimpleGUI ikkuna jossa käyttäjä voi valita kentän mitä pelata (kenttien määrä ja siten kenttäpainikkeiden määrä main menussa määräytyy levels.txt tiedostossa olevien kenttien määrän mukaan).
 
-Käyttäjä voi myös valita Time attack moodin sen nimisestä painikkeesta tai katsoa parhaita Time attack moodin läpäisyaikoja highscores painiketta painamalla. Highscores painike aukaisee toisen PySimpleGUI ikkunan jossa kolme parasta läpäisyaikaa on per kenttä esitettynä, tämä tieto saadaan sqlite tietokanta tiedostosta. Kolmas näkymä on pygame kirjastolla tuotettu pelinäkymä jonka leveys on vakio ja korkeus on riippuvainen kentän korkeudesta.
+Käyttäjä voi myös valita Time attack moodin sen nimisestä painikkeesta tai katsoa parhaita Time attack moodin läpäisyaikoja highscores painiketta painamalla. Highscores painike aukaisee toisen PySimpleGUI ikkunan jossa kolme parasta läpäisyaikaa on per kenttä esitettynä, tämä tieto saadaan sqlite tietokanta tiedostosta. Highscores ikkunassa käyttäjä voi tyhjentää tietokannan sisältämät tiedot klikkaamalla "Erase scores" painiketta, tämä toiminnallisuus on toteutettu HighscoreRepository luokan metodien avulla. 
+
+Kolmas näkymä on pygame kirjastolla tuotettu pelinäkymä jonka leveys on oletusarvoisesti 1200 pikseliä (tätä voi konfiguroida itse .env tiedostossa) ja korkeus on riippuvainen kentän sekä yksittäisen spriten korkeudesta (yksittäisen spriten kokoa voi konfiguroida .env tiedostossa).
 
 PySimpleGUI näkymät on toteutettu samassa UI luokassa ja pygame näkymää pyörittää Render luokka game luokan ohjastamana. 
 
@@ -147,15 +149,29 @@ PySimpleGUI näkymät on toteutettu samassa UI luokassa ja pygame näkymää py�
 
 ![highscore_menu](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/jumpman_highscore_menu.png)
 
-Pelin käynnistäminen sekvenssikaaviona
+### Pelilogiikan toiminta
+
+**Pelin käynnistäminen sekvenssikaaviona**
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/game_class_sequence.png)
 
 Yllä olevassa sekvenssikaaviossa kuvataan mitä tapahtuu sen jälkeen kun käyttäjä klikkaa jotain aloitus käyttöliittymän level painikkeista. Ui luokan metodi run_game() alustaa tarvittavat riippuvuudet game luokan olion luomiseksi. Riippuvuudet injektoidaan game luokan olioon sen konstruktorin kautta. Game luokassa start() metodi pyörittää pygame peliä ylläpitävää silmukkaa, joka tarkastaa pelinäkymän tapahtumat, käyttäjän syötteet ja level luokan metodeilla level_completion() ja player_demise, sen tulisiko pelinäkymä pysäyttää tai aloittaa valittu pelikenttä alusta. 
 
-Level luokan toiminta sekvenssikaaviona
+**Level luokan toiminta sekvenssikaaviona**
 
 ![Sekvenssikaavio](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/graphs/level_class_sequence.png)
 
 Level luokka kutsuu SpriteHandler luokkaa initialisoimaan pygame pelinäkymän mukaiset spritet levels.txt tiedostosta saamansa level_map listan mukaan. Level luokka sisältää metodit spritejen väliselle törmäystarkastelulle, jolla tarkastetaan pelaajan hahmon osuminen vihollisiin, kolikoihin, artifakteihin ja kaikkiin seiniin, kattoihin ja lattioihin. Level luokassa on myös metodi pelinäkymän rullaavan kameran toteutukseen, se tarkistaa mikäli pelaaja on siirtynyt pelinäkymän reunalle, mikäli pelaaja jatkaa liikettään kohti reunaa, metodi muuttaa pelaajan nopeuden nollaan ja siirtää nopeuden camera_shift muuttujaan jonka avulla kaikkia spriteja siirretään sprite luokan update metodilla sivuun. 
+
+Mikäli pelaaja osuu viholliseen tai putoaa pelinäkymästä pois, level luokan metodi player_demise() palauttaa game luokan metodille start() boolean arvon True, jolloin game luokan metodi start() kutsuu level luokan metodeja re_initialize() ja setup(). Näillä level luokan metodeilla ohjataan SpriteHandler luokan oliota uudelleen initialisoimaan kaikki kentät spritet ja level luokan setup() metodi käy kenttädatan uudelleen läpi. Tämän seurauksena peli palaa alku asetelmaansa. 
+
+Mikäli pelaaja läpäisee kentän osumalla maalispriteen tai time attack moodissa aika loppuu kesken game luokan start metodin silmukka katkeaa ja peli päättyy, sovellus palaa silloin PySimpleGUI main menu näkymään. Jos time attack moodi oli käynnissä pelaajan osuessa maaliin game luokan start metodi kutsuu game luokan metodia write_highscore_to_db metodia ennen silmukan päättymistä. Tämä metodi kutsuu game luokkaan injektoitua HighscoreRepository oliota tallentamaan kentän läpäisyajan tietokantaan metodilla insert_into_highscores(). 
+
+### Tietojen käsittely (tallennus, säilytys ja luku)
+
+Sovellus käyttää SQLite tietokantaa tallentamaan kenttien läpäisyaikoja, käytössä on vain yksi taulu nimellä highscores. Tietokantaa käyttämään käytetään HighscoreRepository oliota jolla on metodit tiedon tallentamiseen, poistamiseen ja hakemiseen. Hakumetodi highscores_list() hakee tietokannasta yhdellä SQL komennolla kaikkien kenttien kolme parasta (lyhintä) läpäisyaikaa järjestettynä kenttien numeron mukaan ja palauttaa ne listana. Tietokannan highscores taulun yksi rivi sisältää kentän numeron ja läpäisyajan kahdella desimaalilla. 
+
+Tietokannan tiedoston nimeä voi konfiguroida .env tiedoston kautta ja tietokanta tulee alustaa ennen sovelluksen käynnistystä komentorivikomennolla "poetry run invoke build". Tietokanta tiedosto sijaitsee sovelluksen data kansiossa. 
+
+Sovelluksessa on myös tekstitiedosto levels.txt (nimeä voi konfiguroida .env tiedoston kautta) josta luetaan pelin kenttien koostumus. Käyttäjä voi itse muokata kenttiä ja luoda uusia käyttöohjeet sivun mukaisten ohjeiden mukaan. Sovelluksen "loppupalautus" release paketissa on kolme kenttää. Sovellus lukee kenttätietoja support kansiossa olevan helper_functions.py moduulin funktiolla level_file_reader() joka palauttaa kenttätiedot listana. Sovellus lisää tarvittavat "Level X" painikkeet käyttöliittymän main menu ikkunaan sen mukaan kuinka monta kenttää level_file_reader() funktion palauttamassa listassa on.  
 
