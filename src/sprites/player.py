@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
     def apply_gravity(self):
         """Method to pull player sprite towards "ground" and thus creating a
         sense of gravity in the game. Calls movement method to actually change 
-        sprite position. 
+        sprite position in the y-axis. 
         """
 
         self.direction.y += self.gravity
