@@ -20,7 +20,7 @@ Jumpman on tasohyppely peli joka on sivulle rullaavalla ruudulla toteutettu Pyth
 
 - [Changelog](https://github.com/JuhoSiitonen/ot-harjoitustyo/blob/master/documentation/changelog.md)
 
-- [Release 1](https://github.com/JuhoSiitonen/ot-harjoitustyo/releases/tag/Viikko5)
+- [Loppupalautus release](https://github.com/JuhoSiitonen/ot-harjoitustyo/releases/tag/Loppupalautus)
 
 ## Käyttöohjeet
 
