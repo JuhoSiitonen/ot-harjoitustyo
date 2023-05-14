@@ -3,8 +3,8 @@ from sprites.sprite_handler import SpriteHandler
 from settings import CELL_SIZE
 
 class Level:
-    """Class to setup sprites to screen from a level data list. Also
-    handles collision checks and the rolling camera. 
+    """Class to setup sprites to screen from a level data list using a SpriteHandler 
+    object. Also handles collision checks and the rolling camera. 
 
     Attributes:
         sprites: SpriteHandler object to initialize sprites.
@@ -17,8 +17,8 @@ class Level:
 
     def __init__(self, level_map, level_number):
         """Class constructor which calls a method to initialize sprite 
-        groups and then sets up the level from level_map list data, also 
-        keeps level number info. 
+        groups via a SpriteHandler object and then sets up the level from level_map list 
+        data, also keeps level number info. 
 
         Args:
             level_map (list): List with level data.
@@ -30,12 +30,10 @@ class Level:
         self.setup()
         self.camera_shift = 0
         self.level_number = level_number
-        self.start = time.time()
-        self.counter = 1
 
     def setup(self):
         """Method to enumerate level_map data and instantiate appropriate 
-        sprite classes by calling sprite_handler class methods to do it. 
+        sprite classes by calling SpriteHandler class methods to do it. 
         """
 
         for row_index, row in enumerate(self.level_map):
@@ -61,7 +59,11 @@ class Level:
         self.sprites = SpriteHandler()
 
     def camera(self):
-        """Method to move display (camera) according to player movement.
+        """Method to move display (camera) according to player movement. This
+        is done by changin player movement speed to zero when player is near the edge
+        of the screen and instead moving all sprites with the camera_shift value. When
+        player is not at the edge of the screen returns player speed to 7 and camera_shift
+        to zero. 
         """
 
         x_coord = self.sprites.player.get_player_x()
