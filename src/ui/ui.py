@@ -19,7 +19,6 @@ class UI:
         Attributes:
             time_attack: Tells if user selected the time attack mode by clicking 
                 the time attack button. 
-            layout: PySimpleGUI window layout, font and size
             level_map: Nested list with level data, used to determine how many levels
                 are in the game, and thus have the buttons for opening them.
             highscores: List of tuples, highscores in order of level and by completion time.
@@ -133,7 +132,7 @@ class UI:
         function call).
 
         Args:
-            event (str): Str which is the key value of the buttons on the PySimpleGUI
+            event (dict): Dict which has the key value of the buttons on the PySimpleGUI
             window. 
         """
 
