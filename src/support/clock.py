@@ -3,7 +3,8 @@ import pygame
 
 
 class Clock:
-    """Class to handle framerate in pygame. 
+    """Class to handle framerate in pygame. Used also to check 
+    starting time of gameplay for time attack mode.
     """
 
     def __init__(self):
