@@ -1,5 +1,33 @@
 # Käyttöohje
 
+## Asennus ja suoritus
+Sovelluksen vaatimat kirjastot voi asentaa komennolla:
+
+**poetry install**
+
+Sovellus tulee seuraavaksi alustaa komennolla:
+
+**poetry run invoke build**
+
+Sovelluksen voi sen jälkeen käynnistää komennolla:
+
+**poetry run invoke start**
+
+## Testaus
+Sovelluksen yksikkötestit voi ajaa komennolla:
+
+**poetry run invoke test**
+
+Sovelluksen testikattavuuden saa html tiedostoksi seuraavalla komennolla:
+
+**poetry run invoke coverage-report**
+
+## Pylint
+Sovelluksen Pylint tuloksen saa komennolla:
+
+**poetry run invoke lint**
+
+
 Sovelluksen käynnistyessä aukeaa PySimpleGUI ikkuna jossa voi valita pelattavan kentän ja mikäli haluaa pelata Time Attack moodissa jossa on 15 sekuntia aikaa läpäistä kenttä (moodin aikaraja on konfiguroitavissa). Tässä päävalikko ikkunassa voi myös valita Highscores painikkeen joka aukaisee uuden ikkunan jossa on esitettynä kaikkien kenttien kolme parasta läpäisyaikaa (mikäli niitä on).
 
 Pelin ohjaus tapahtuu nuolinäppäimillä oikealle ja vasemmalle ja välilyönnistä hahmo hyppää. Punaiset hahmot ovat vihollisia joihin osuttaessa kenttä alkaa alusta, samoin käy myös kun pelaajahahmo putoaa pois kentältä. Keltaiset neliöt ovat kolikkoja, punaiset neliöt artifakteja ja sininen suorakulmio on maali. Pelaajahahmo voi roikkua "katosta" hyppynappi painettuna pohjaan. 
